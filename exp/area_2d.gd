@@ -2,6 +2,8 @@ extends Area2D
 
 var click = false
 
+
+
 func _process(_delta):
 	if click:
 		position = get_global_mouse_position()

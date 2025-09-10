@@ -1,0 +1,301 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbjstf85fr5rt"]
+
+[ext_resource type="Script" uid="uid://2k12yh3rkeqr" path="res://control.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dicniwkl0n2co" path="res://icon.svg" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://ct5ihmw5r70nk" path="res://Sin título.png" id="3_h2yge"]
+[ext_resource type="FontFile" uid="uid://f71bj77sai0j" path="res://brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_1bvp3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0xm2m")
+
+[node name="Boton_A" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 831.0
+offset_top = 39.0
+offset_right = 967.0
+offset_bottom = 175.0
+scale = Vector2(0.678275, 0.657849)
+icon = ExtResource("2_h2yge")
+
+[node name="Boton_B" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 983.0
+offset_top = 39.0
+offset_right = 1119.0
+offset_bottom = 175.0
+scale = Vector2(0.678275, 0.657849)
+icon = ExtResource("2_h2yge")
+
+[node name="Boton_C" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 187.0
+offset_right = 966.0
+offset_bottom = 323.0
+scale = Vector2(0.678275, 0.657849)
+icon = ExtResource("2_h2yge")
+
+[node name="Boton_D" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 985.0
+offset_top = 188.0
+offset_right = 1121.0
+offset_bottom = 324.0
+scale = Vector2(0.678275, 0.657849)
+icon = ExtResource("2_h2yge")
+
+[node name="Boton_E" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 831.0
+offset_top = 340.0
+offset_right = 967.0
+offset_bottom = 476.0
+scale = Vector2(0.678275, 0.657849)
+icon = ExtResource("2_h2yge")
+
+[node name="Boton_F" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 341.0
+offset_right = 1122.0
+offset_bottom = 477.0
+scale = Vector2(0.678275, 0.657849)
+icon = ExtResource("2_h2yge")
+
+[node name="Boton_G" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 831.0
+offset_top = 497.0
+offset_right = 967.0
+offset_bottom = 633.0
+scale = Vector2(0.678275, 0.657849)
+icon = ExtResource("2_h2yge")
+
+[node name="Boton_H" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 495.0
+offset_right = 1123.0
+offset_bottom = 631.0
+scale = Vector2(0.678275, 0.657849)
+icon = ExtResource("2_h2yge")
+
+[node name="Panel_A" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_A"]
+position = Vector2(254.25, 310)
+scale = Vector2(1.1645, 1.1087)
+texture = ExtResource("3_h2yge")
+
+[node name="Label" type="Label" parent="Control/Panel_A"]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("4_1bvp3")
+text = "Agua"
+
+[node name="Label2" type="Label" parent="Control/Panel_A"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("4_1bvp3")
+text = "el agua es agua nada más
+que decir"
+horizontal_alignment = 1
+
+[node name="Agregar_A" type="Button" parent="Control/Panel_A"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("2_h2yge")
+
+[node name="Panel_B" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2" type="Sprite2D" parent="Control/Panel_B"]
+position = Vector2(254.25, 310)
+scale = Vector2(1.1645, 1.1087)
+texture = ExtResource("3_h2yge")
+
+[node name="Label" type="Label" parent="Control/Panel_B"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 68.0
+offset_right = 298.0
+offset_bottom = 91.0
+theme_override_fonts/font = ExtResource("4_1bvp3")
+text = "Naranja"
+
+[node name="Label2" type="Label" parent="Control/Panel_B"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 116.0
+offset_right = 381.0
+offset_bottom = 139.0
+theme_override_fonts/font = ExtResource("4_1bvp3")
+text = "potasio o vitamina c"
+
+[node name="Agregar_B" type="Button" parent="Control/Panel_B"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("2_h2yge")
+
+[node name="Panel_C" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite3" type="Sprite2D" parent="Control/Panel_C"]
+position = Vector2(254.25, 310)
+scale = Vector2(1.1645, 1.1087)
+texture = ExtResource("3_h2yge")
+
+[node name="Agregar_C" type="Button" parent="Control/Panel_C"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("2_h2yge")
+
+[node name="Panel_D" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite4" type="Sprite2D" parent="Control/Panel_D"]
+position = Vector2(254.25, 310)
+scale = Vector2(1.1645, 1.1087)
+texture = ExtResource("3_h2yge")
+
+[node name="Agregar_D" type="Button" parent="Control/Panel_D"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("2_h2yge")
+
+[node name="Panel_E" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite4" type="Sprite2D" parent="Control/Panel_E"]
+position = Vector2(254.25, 310)
+scale = Vector2(1.1645, 1.1087)
+texture = ExtResource("3_h2yge")
+
+[node name="Agregar_E" type="Button" parent="Control/Panel_E"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("2_h2yge")
+
+[node name="Panel_F" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite4" type="Sprite2D" parent="Control/Panel_F"]
+position = Vector2(254.25, 310)
+scale = Vector2(1.1645, 1.1087)
+texture = ExtResource("3_h2yge")
+
+[node name="Agregar_F" type="Button" parent="Control/Panel_F"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("2_h2yge")
+
+[node name="Panel_G" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite4" type="Sprite2D" parent="Control/Panel_G"]
+position = Vector2(254.25, 310)
+scale = Vector2(1.1645, 1.1087)
+texture = ExtResource("3_h2yge")
+
+[node name="Agregar_G" type="Button" parent="Control/Panel_G"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("2_h2yge")
+
+[node name="Panel_H" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite4" type="Sprite2D" parent="Control/Panel_H"]
+position = Vector2(254.25, 310)
+scale = Vector2(1.1645, 1.1087)
+texture = ExtResource("3_h2yge")
+
+[node name="Agregar_H" type="Button" parent="Control/Panel_H"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("2_h2yge")
+
+[connection signal="pressed" from="Control/Boton_A" to="Control" method="_on_boton_a_pressed"]
+[connection signal="pressed" from="Control/Boton_B" to="Control" method="_on_boton_b_pressed"]
+[connection signal="pressed" from="Control/Boton_C" to="Control" method="_on_boton_c_pressed"]
+[connection signal="pressed" from="Control/Boton_D" to="Control" method="_on_boton_d_pressed"]
+[connection signal="pressed" from="Control/Boton_E" to="Control" method="_on_boton_e_pressed"]
+[connection signal="pressed" from="Control/Boton_F" to="Control" method="_on_boton_f_pressed"]
+[connection signal="pressed" from="Control/Boton_G" to="Control" method="_on_boton_g_pressed"]
+[connection signal="pressed" from="Control/Boton_H" to="Control" method="_on_boton_h_pressed"]
+[connection signal="pressed" from="Control/Panel_A/Agregar_A" to="Control" method="_on_agregar_a_pressed"]
+[connection signal="pressed" from="Control/Panel_B/Agregar_B" to="Control" method="_on_agregar_b_pressed"]
+[connection signal="pressed" from="Control/Panel_C/Agregar_C" to="Control" method="_on_agregar_c_pressed"]
+[connection signal="pressed" from="Control/Panel_D/Agregar_D" to="Control" method="_on_agregar_d_pressed"]
+[connection signal="pressed" from="Control/Panel_E/Agregar_E" to="Control" method="_on_agregar_e_pressed"]
+[connection signal="pressed" from="Control/Panel_F/Agregar_F" to="Control" method="_on_agregar_f_pressed"]
+[connection signal="pressed" from="Control/Panel_G/Agregar_G" to="Control" method="_on_agregar_g_pressed"]
+[connection signal="pressed" from="Control/Panel_H/Agregar_H" to="Control" method="_on_agregar_h_pressed"]
