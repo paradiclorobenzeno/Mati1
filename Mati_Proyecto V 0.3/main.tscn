@@ -1,0 +1,370 @@
+[gd_scene load_steps=20 format=3 uid="uid://bbjstf85fr5rt"]
+
+[ext_resource type="Texture2D" uid="uid://cnqu3nmrda8px" path="res://Untitled 10-04-2025 10-49-21.png" id="1_4c57u"]
+[ext_resource type="Texture2D" uid="uid://dicniwkl0n2co" path="res://icon.svg" id="2_h2yge"]
+[ext_resource type="FontFile" uid="uid://f71bj77sai0j" path="res://brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://gpmvdij0o52t" path="res://pngtree-white-sugar-png-image_12837048.png" id="5_kek77"]
+[ext_resource type="Texture2D" uid="uid://jrn3i80juoa6" path="res://Untitled 09-15-2025 11-02-53.png" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://c6n2oyh2uyyg" path="res://brackeys_platformer_assets/brackeys_platformer_assets/music/time_for_adventure.mp3" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://1hk5timw24ih" path="res://configuraciones.gd" id="12_dg77c"]
+
+[sub_resource type="GDScript" id="GDScript_272bh"]
+script/source = "extends Control
+
+func _ready() -> void:
+	var _EA1_v = GlobalData.estado_objetos.get(\"EA1\", false)
+	var _EA2_v = GlobalData.estado_objetos.get(\"EA2\", false)
+	var _EB1_v = GlobalData.estado_objetos.get(\"EB1\", false)
+	var _EB2_v = GlobalData.estado_objetos.get(\"EB2\", false)
+	
+	if _EA1_v and _EB2_v or _EA2_v and _EB1_v:
+		print(\"Visibles en la escena\")
+	elif _EA1_v or _EB2_v or _EA2_v or _EB1_v:
+		print(\"Solo uno visible\")
+	else:
+		print(\"invisible\")
+
+func _on_configuranción_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Prueba.tscn\")
+"
+
+[sub_resource type="Animation" id="Animation_dg77c"]
+resource_name = "Agregar"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_ycdy4"]
+resource_name = "Explosion"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_w48qg"]
+resource_name = "Mezclar"
+length = 2.0
+
+[sub_resource type="Animation" id="Animation_vivmo"]
+resource_name = "Nueva receta"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(792, 558), Vector2(792, 435), Vector2(792, 435), Vector2(792, 558)]
+}
+
+[sub_resource type="Animation" id="Animation_4c57u"]
+resource_name = "Quieto"
+length = 1.09
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_efxa6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(792, 558)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ycdy4"]
+_data = {
+&"Agregar": SubResource("Animation_dg77c"),
+&"Explosion": SubResource("Animation_ycdy4"),
+&"Mezclar": SubResource("Animation_w48qg"),
+&"Nueva receta": SubResource("Animation_vivmo"),
+&"Quieto": SubResource("Animation_4c57u"),
+&"RESET": SubResource("Animation_efxa6")
+}
+
+[sub_resource type="Animation" id="Animation_2cqfq"]
+resource_name = "Mezclar"
+length = 2.0
+
+[sub_resource type="Animation" id="Animation_yaehf"]
+resource_name = "Nueva Receta"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(792, 558), Vector2(792, 442.5), Vector2(792, 442.5), Vector2(792, 558)]
+}
+
+[sub_resource type="Animation" id="Animation_074og"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(792, 558)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cegan"]
+_data = {
+&"Mezclar": SubResource("Animation_2cqfq"),
+&"Nueva Receta": SubResource("Animation_yaehf"),
+&"RESET": SubResource("Animation_074og")
+}
+
+[node name="Main" type="Node2D"]
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(612, 316)
+texture = ExtResource("1_4c57u")
+hframes = 4
+vframes = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_272bh")
+metadata/_edit_use_anchors_ = true
+
+[node name="Mezclar" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 536.0
+offset_right = 603.0
+offset_bottom = 672.0
+scale = Vector2(1.98766, 0.398365)
+icon = ExtResource("2_h2yge")
+
+[node name="Reset" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 50.0
+offset_right = 617.0
+offset_bottom = 186.0
+scale = Vector2(1.96861, 0.569466)
+icon = ExtResource("2_h2yge")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 572.0
+offset_top = 384.0
+offset_right = 582.0
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8, 4)
+size_flags_horizontal = 0
+color = Color(1, 1, 1, 0)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 572.5
+offset_top = 403.5
+offset_right = 582.5
+offset_bottom = 413.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8, 2)
+color = Color(1, 1, 1, 0)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 571.5
+offset_top = 383.5
+offset_right = 581.5
+offset_bottom = 393.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8, 2)
+color = Color(1, 1, 1, 0)
+
+[node name="Configuraciones" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_dg77c")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Configuraciones"]
+layout_mode = 0
+offset_left = 1001.0
+offset_top = 345.0
+offset_right = 1137.0
+offset_bottom = 627.0
+theme_override_constants/separation = 10
+
+[node name="Configuranción" type="Button" parent="Configuraciones/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_h2yge")
+flat = true
+
+[node name="Salir" type="Button" parent="Configuraciones/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_h2yge")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(614.5, 366.5)
+scale = Vector2(5, 5)
+texture = ExtResource("5_lquwl")
+hframes = 5
+vframes = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(613.5, 408.5)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("5_kek77")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_efxa6")
+autoplay = true
+parameters/looping = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ycdy4")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cegan")
+}
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 792.0
+offset_top = 558.0
+offset_right = 1144.0
+offset_bottom = 580.9999
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("4_1bvp3")
+text = "Aprendiste una nueva receta"
+
+[connection signal="pressed" from="Configuraciones/VBoxContainer/Configuranción" to="Control" method="_on_configuranción_pressed"]
+[connection signal="pressed" from="Configuraciones/VBoxContainer/Salir" to="Configuraciones" method="_on_salir_pressed"]
