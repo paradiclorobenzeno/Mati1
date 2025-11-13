@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://drfy4apm71rs6"]
+
+[ext_resource type="Texture2D" uid="uid://dicniwkl0n2co" path="res://icon.svg" id="1_a202f"]
+[ext_resource type="Script" uid="uid://bixoq6npdl4ht" path="res://character_body_3d.gd" id="1_noarx"]
+[ext_resource type="Script" uid="uid://b8ra8x1lebs7p" path="res://camera_3d.gd" id="3_a0tk4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
+albedo_texture = ExtResource("1_a202f")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_a0tk4")
+use_collision = true
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8546705, 0)
+script = ExtResource("1_noarx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
+texture = ExtResource("1_a202f")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("objetivo")]
+transform = Transform3D(1, 0, 0, 0, 0.89502, 0.446026, 0, -0.446026, 0.89502, 0, 3.768813, 5.8570323)
+script = ExtResource("3_a0tk4")
+objetivo = NodePath("../CharacterBody3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8929082, 0, -0.4502387, 0.23421638, 0.85404146, 0.46449524, 0.38452253, -0.5202049, 0.76258063, -5.9834576, 3.7011123, 8.24965)

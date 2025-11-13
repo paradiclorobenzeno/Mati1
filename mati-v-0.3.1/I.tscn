@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://ob2be6105qaa"]
+
+[ext_resource type="Texture2D" uid="uid://gm0qdc86ey8i" path="res://orange-with-ai-generated-free-png.png" id="1_7g6q2"]
+[ext_resource type="Texture2D" uid="uid://b31gocgwrcbeq" path="res://pngtree-green-lemon-png-image_15759038.png" id="2_40lbj"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 373)
+texture = ExtResource("1_7g6q2")
+
+[node name="PngtreeGreenLemonPngImage15759038" type="Sprite2D" parent="."]
+position = Vector2(839, 285)
+texture = ExtResource("2_40lbj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 611.0
+offset_bottom = 108.0
+theme_override_font_sizes/font_size = 100
+text = "vali callapa tomas"
