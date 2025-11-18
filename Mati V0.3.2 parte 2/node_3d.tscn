@@ -1,0 +1,269 @@
+[gd_scene load_steps=17 format=3 uid="uid://drfy4apm71rs6"]
+
+[ext_resource type="Texture2D" uid="uid://dicniwkl0n2co" path="res://icon.svg" id="1_a202f"]
+[ext_resource type="Script" uid="uid://bixoq6npdl4ht" path="res://character_body_3d.gd" id="1_noarx"]
+[ext_resource type="Script" uid="uid://b8ra8x1lebs7p" path="res://camera_3d.gd" id="3_a0tk4"]
+[ext_resource type="Texture2D" uid="uid://csbx5wcht38uc" path="res://C.png" id="4_r3fl7"]
+[ext_resource type="PackedScene" uid="uid://bfsie7ia78c10" path="res://ArmObj.tscn" id="5_jka67"]
+
+[sub_resource type="GDScript" id="GDScript_jsk3o"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	pass
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
+
+[sub_resource type="GDScript" id="GDScript_jka67"]
+resource_name = "JT"
+script/source = "extends Node2D   # o Area2D, pero Node2D es mejor
+
+var direccion: Vector2 = Vector2.ZERO
+var index := -1
+var radio := 80.0
+
+@onready var base = $Base
+@onready var stick = $Stick
+
+func _input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed and index == -1:
+			var dist = base.global_position.distance_to(event.position)
+			if dist <= radio:
+				index = event.index
+				_update_stick(event.position)
+
+		elif event.index == index and not event.pressed:
+			index = -1
+			direccion = Vector2.ZERO
+			stick.position = Vector2.ZERO
+
+	if event is InputEventScreenDrag and event.index == index:
+		_update_stick(event.position)
+
+func _update_stick(pos: Vector2):
+	var dist = base.global_position.distance_to(pos)
+
+	if dist <= radio:
+		stick.global_position = pos
+		direccion = (pos - base.global_position) / radio
+	else:
+		var dir = base.global_position.direction_to(pos)
+		stick.global_position = base.global_position + dir * radio
+		direccion = dir
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i5arm"]
+radius = 101.0198
+
+[sub_resource type="GDScript" id="GDScript_r3fl7"]
+resource_name = "MI"
+script/source = "extends Node3D
+
+func _ready():
+	$Cartel.visible = false
+	$\"../CanvasLayer/Touch\".visible = false
+
+func _on_area_3d_body_entered(_body: CharacterBody3D):
+	$Cartel.visible = true
+	$\"../CanvasLayer/Touch\".visible = true
+
+func _on_area_3d_body_exited(_body: CharacterBody3D):
+	$Cartel.visible = false
+	$\"../CanvasLayer/Touch\".visible = false
+
+func _on_touch_pressed() -> void:
+	GlobalData.last_position = $\"../CharacterBody3D\".global_transform.origin
+	GlobalData.should_return_position = true
+
+	get_tree().change_scene_to_file(\"res://main.tscn\")
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i5arm"]
+
+[sub_resource type="GDScript" id="GDScript_i5arm"]
+script/source = "extends Area3D
+
+@export var scene_to_load : String
+
+func _input_event(_camera, event, _position, _normal, _shape_idx):
+	if event is InputEventScreenTouch and event.pressed:
+		get_tree().change_scene_to_file(scene_to_load)
+
+	if event is InputEventMouseButton and event.pressed:
+		get_tree().change_scene_to_file(scene_to_load)
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wc5p8"]
+
+[sub_resource type="GDScript" id="GDScript_wc5p8"]
+resource_name = "MI2"
+script/source = "extends Node3D
+
+func _ready():
+	$Cartel.visible = false
+	$\"../CanvasLayer/Touch2\".visible = false
+
+
+func _on_area_3d_body_entered(_body: CharacterBody3D) -> void:
+	$Cartel.visible = true
+	$\"../CanvasLayer/Touch2\".visible = true
+
+func _on_area_3d_body_exited(_body: CharacterBody3D) -> void:
+	$Cartel.visible = false
+	$\"../CanvasLayer/Touch2\".visible = false
+
+func _on_touch_2_pressed() -> void:
+	# Guarda la posición del jugador antes de cambiar de escena
+	GlobalData.last_position = $\"../CharacterBody3D\".global_transform.origin
+	GlobalData.should_return_position = true
+
+	get_tree().change_scene_to_file(\"res://Prueba.tscn\")
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
+albedo_texture = ExtResource("1_a202f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_jsk3o")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8546705, 0)
+script = ExtResource("1_noarx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
+texture = ExtResource("1_a202f")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("objetivo")]
+transform = Transform3D(1, 0, 0, 0, 0.89502, 0.446026, 0, -0.446026, 0.89502, 0, 3.768813, 5.8570323)
+script = ExtResource("3_a0tk4")
+objetivo = NodePath("../CharacterBody3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8929082, 0, -0.4502387, 0.23421638, 0.85404146, 0.46449524, 0.38452253, -0.5202049, 0.76258063, -5.9834576, 3.7011123, 8.24965)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Joystick" type="Node2D" parent="CanvasLayer"]
+position = Vector2(163, 490)
+script = SubResource("GDScript_jka67")
+
+[node name="Base" type="Sprite2D" parent="CanvasLayer/Joystick"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_r3fl7")
+
+[node name="Stick" type="Sprite2D" parent="CanvasLayer/Joystick"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_a202f")
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Joystick"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Joystick/Area2D"]
+shape = SubResource("CircleShape2D_i5arm")
+
+[node name="Touch" type="Button" parent="CanvasLayer"]
+offset_left = 929.0
+offset_top = 427.0
+offset_right = 1065.0
+offset_bottom = 563.0
+icon = ExtResource("1_a202f")
+
+[node name="Touch2" type="Button" parent="CanvasLayer"]
+offset_left = 929.0
+offset_top = 427.0
+offset_right = 1065.0
+offset_bottom = 563.0
+icon = ExtResource("1_a202f")
+
+[node name="MI" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8594167, 0.4257493, 0)
+script = SubResource("GDScript_r3fl7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="MI"]
+use_collision = true
+
+[node name="Area3D" type="Area3D" parent="MI"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MI/Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_i5arm")
+
+[node name="Cartel" type="Sprite3D" parent="MI"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0077791214, 1.4369526, 0)
+texture = ExtResource("1_a202f")
+
+[node name="Area3D" type="Area3D" parent="MI/Cartel"]
+script = SubResource("GDScript_i5arm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MI/Cartel/Area3D"]
+shape = SubResource("BoxShape3D_wc5p8")
+
+[node name="MI2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8682432, 0.4257493, 0)
+script = SubResource("GDScript_wc5p8")
+
+[node name="Area3D" type="Area3D" parent="MI2"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MI2/Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_i5arm")
+
+[node name="Cartel" type="Sprite3D" parent="MI2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0077791214, 2.9140747, 0)
+texture = ExtResource("1_a202f")
+
+[node name="Area3D" type="Area3D" parent="MI2/Cartel"]
+script = SubResource("GDScript_i5arm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MI2/Cartel/Area3D"]
+shape = SubResource("BoxShape3D_wc5p8")
+
+[node name="Node3D" parent="MI2" instance=ExtResource("5_jka67")]
+transform = Transform3D(-3.278354e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.278354e-08, 0, 0.86381197, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.02765996, 0.99961734, 0, -0.99961734, 0.02765996, 0, 3.4003074, 0)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_a0tk4")
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(-2.1855695e-07, -0.2, 0, 5, -8.742278e-09, 0, 0, 0, 10, -4.9530625, 2.5456312, 0)
+material_override = SubResource("StandardMaterial3D_a0tk4")
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(-2.1855695e-07, -0.2, 0, 5, -8.742278e-09, 0, 0, 0, 10, 4.887016, 2.5456312, 0)
+material_override = SubResource("StandardMaterial3D_a0tk4")
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(10, 0, 0, 0, -8.742278e-09, -5, 0, 0.2, -2.1855695e-07, 0, 2.6248775, -4.596195)
+material_override = SubResource("StandardMaterial3D_a0tk4")
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 0.25, 0, 2.5199049, 3.440491)
+use_collision = true
+material = SubResource("StandardMaterial3D_r3fl7")
+
+[connection signal="pressed" from="CanvasLayer/Touch" to="MI" method="_on_touch_pressed"]
+[connection signal="pressed" from="CanvasLayer/Touch2" to="MI2" method="_on_touch_2_pressed"]
+[connection signal="body_entered" from="MI/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="MI/Area3D" to="MI" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="MI/Area3D" to="MI" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="MI2/Area3D" to="MI2" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="MI2/Area3D" to="MI2" method="_on_area_3d_body_exited"]
