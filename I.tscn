@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ob2be6105qaa"]
+
+[ext_resource type="Texture2D" uid="uid://dicniwkl0n2co" path="res://icon.svg" id="1_nbi0x"]
+
+[sub_resource type="GDScript" id="GDScript_nbi0x"]
+resource_name = "boton test"
+script/source = "extends Control
+
+@onready var btn = $ButtonInteractuar
+
+func show_interact_button():
+	btn.show()
+
+func hide_interact_button():
+	btn.hide()
+"
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_nbi0x")
+
+[node name="Button" type="Button" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("1_nbi0x")
