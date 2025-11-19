@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bidvki6ja5y4t"
+path="res://.godot/imported/explosion.wav-67aac97abde1aef54e3aa71be6fa3ea0.sample"
+
+[deps]
+
+source_file="res://Mati V0.3.2 parte 1/brackeys_platformer_assets/brackeys_platformer_assets/sounds/explosion.wav"
+dest_files=["res://.godot/imported/explosion.wav-67aac97abde1aef54e3aa71be6fa3ea0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c6n2oyh2uyyg"
+path="res://.godot/imported/time_for_adventure.mp3-200b448002391f3c1661834ae01768a7.mp3str"
+
+[deps]
+
+source_file="res://Mati V0.3.2 parte 1/brackeys_platformer_assets/brackeys_platformer_assets/music/time_for_adventure.mp3"
+dest_files=["res://.godot/imported/time_for_adventure.mp3-200b448002391f3c1661834ae01768a7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
