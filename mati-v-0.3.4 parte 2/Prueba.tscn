@@ -1,0 +1,1905 @@
+[gd_scene load_steps=8 format=3 uid="uid://xytoxk3f6pqj"]
+
+[ext_resource type="PackedScene" uid="uid://d3jxrp4ti5bnl" path="res://Arm.tscn" id="1_b0kld"]
+[ext_resource type="Texture2D" uid="uid://blg30ge8d1jst" path="res://Mati V0.3.2 parte 1/brackeys_platformer_assets/brackeys_platformer_assets/sprites/Untitled 11-08-2025 05-06-59.png" id="1_wgwtc"]
+[ext_resource type="Texture2D" uid="uid://drgw1yfld87if" path="res://Untitled 09-11-2025 09-29-12.png" id="5_1d36f"]
+[ext_resource type="FontFile" uid="uid://f71bj77sai0j" path="res://Mati V0.3.2 parte 1/brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="6_d4gy5"]
+[ext_resource type="Texture2D" uid="uid://dicniwkl0n2co" path="res://icon.svg" id="7_swha6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ep22w"]
+viewport_path = NodePath("TextureRect/SubViewport")
+
+[sub_resource type="GDScript" id="GDScript_1d36f"]
+script/source = "extends Control
+@onready var A = $EA1
+@onready var B = $EB1
+@onready var C = $EC1
+@onready var D = $ED1
+@onready var E = $EE1
+@onready var F = $EF1
+@onready var G = $EG1
+@onready var H = $EH1
+@onready var A2 = $EA2
+@onready var B2 = $EB2
+@onready var C2 = $EC2
+@onready var D2 = $ED2
+@onready var E2 = $EE2
+@onready var F2 = $EF2
+@onready var G2 = $EG2
+@onready var H2 = $EH2
+@onready var P_A = $Panel_A
+@onready var P_B = $Panel_B
+@onready var P_C = $Panel_C
+@onready var P_D = $Panel_D
+@onready var P_E = $Panel_E
+@onready var P_F = $Panel_F
+@onready var P_G = $Panel_G
+@onready var P_H = $Panel_H
+
+func _ready() -> void:
+	A.visible = false
+	B.visible = false
+	C.visible = false
+	D.visible = false
+	E.visible = false
+	F.visible = false
+	G.visible = false
+	H.visible = false
+	A2.visible = false
+	B2.visible = false
+	C2.visible = false
+	D2.visible = false
+	E2.visible = false
+	F2.visible = false
+	G2.visible = false
+	H2.visible = false
+	P_A.visible = false
+	P_B.visible = false
+	P_C.visible = false
+	P_D.visible = false
+	P_E.visible = false
+	P_F.visible = false
+	P_G.visible = false
+	P_H.visible = false
+	for nombre in GlobalData.estado_objetos.keys():
+		if has_node(nombre):
+			get_node(nombre).visible = GlobalData.estado_objetos[nombre]
+	actualizar_bloqueos()
+
+
+func actualizar_bloqueos():
+	# Lista de letras de los objetos
+	var letras = [\"A\",\"B\",\"C\",\"D\",\"E\",\"F\",\"G\",\"H\"]
+
+	# Guardar cuáles están visibles
+	var visibles = []
+
+	for letra in letras:
+		var e1 = get_node_or_null(\"E%s1\" % letra)
+		var e2 = get_node_or_null(\"E%s2\" % letra)
+
+		if e1 and e1.visible or e2 and e2.visible:
+			visibles.append(letra)
+
+	# --- Decisiones según cuántos hay visibles ---
+	if visibles.size() >= 2:
+		# Si hay dos o más visibles → desactivar todos los botones
+		for letra in letras:
+			var boton = get_node_or_null(\"Boton_%s\" % letra)
+			if boton:
+				boton.disabled = true
+	elif visibles.size() == 1:
+		# Si hay solo uno visible → desactivar solo su botón
+		for letra in letras:
+			var boton = get_node_or_null(\"Boton_%s\" % letra)
+			if boton:
+				boton.disabled = (letra == visibles[0])
+	else:
+		# Si no hay ninguno visible → no desactivar nada
+		for letra in letras:
+			var boton = get_node_or_null(\"Boton_%s\" % letra)
+			if boton:
+				boton.disabled = false
+
+
+func detectar_combinaciones():
+	var _EA1 = GlobalData.estado_objetos.get(\"EA1\", false)
+	var _EA2 = GlobalData.estado_objetos.get(\"EA2\", false)
+	var _EB1 = GlobalData.estado_objetos.get(\"EB1\", false)
+	var _EB2 = GlobalData.estado_objetos.get(\"EB2\", false)
+	var _EC1 = GlobalData.estado_objetos.get(\"EC1\", false)
+	var _EC2 = GlobalData.estado_objetos.get(\"EC2\", false)
+	var _ED1 = GlobalData.estado_objetos.get(\"ED1\", false)
+	var _ED2 = GlobalData.estado_objetos.get(\"ED2\", false)
+	var _EE1 = GlobalData.estado_objetos.get(\"EE1\", false)
+	var _EE2 = GlobalData.estado_objetos.get(\"EE2\", false)
+	var _EF1 = GlobalData.estado_objetos.get(\"EF1\", false)
+	var _EF2 = GlobalData.estado_objetos.get(\"EF2\", false)
+	var _EG1 = GlobalData.estado_objetos.get(\"EG1\", false)
+	var _EG2 = GlobalData.estado_objetos.get(\"EG2\", false)
+	var _EH1 = GlobalData.estado_objetos.get(\"EH1\", false)
+	var _EH2 = GlobalData.estado_objetos.get(\"EH2\", false)
+
+func _on_boton_a_pressed() -> void:
+	P_A.visible = true
+	P_B.visible = false
+	P_C.visible = false
+	P_D.visible = false
+	P_E.visible = false
+	P_F.visible = false
+	P_G.visible = false
+	P_H.visible = false
+	$Boton_A/Sprite2D.frame = 8
+	$Boton_B/Sprite2D.frame = 1
+	$Boton_C/Sprite2D.frame = 2
+	$Boton_D/Sprite2D.frame = 3
+	$Boton_E/Sprite2D.frame = 4
+	$Boton_F/Sprite2D.frame = 5
+	$Boton_G/Sprite2D.frame = 6
+	$Boton_H/Sprite2D.frame = 7
+
+func _on_boton_b_pressed() -> void:
+	P_B.visible = true
+	P_E.visible = false
+	P_C.visible = false
+	P_D.visible = false
+	P_A.visible = false
+	P_F.visible = false
+	P_G.visible = false
+	P_H.visible = false
+	$Boton_A/Sprite2D.frame = 0
+	$Boton_B/Sprite2D.frame = 9
+	$Boton_C/Sprite2D.frame = 2
+	$Boton_D/Sprite2D.frame = 3
+	$Boton_E/Sprite2D.frame = 4
+	$Boton_F/Sprite2D.frame = 5
+	$Boton_G/Sprite2D.frame = 6
+	$Boton_H/Sprite2D.frame = 7
+
+func _on_boton_c_pressed() -> void:
+	P_C.visible = true
+	P_B.visible = false
+	P_E.visible = false
+	P_D.visible = false
+	P_A.visible = false
+	P_F.visible = false
+	P_G.visible = false
+	P_H.visible = false
+	$Boton_A/Sprite2D.frame = 0
+	$Boton_B/Sprite2D.frame = 1
+	$Boton_C/Sprite2D.frame = 10
+	$Boton_D/Sprite2D.frame = 3
+	$Boton_E/Sprite2D.frame = 4
+	$Boton_F/Sprite2D.frame = 5
+	$Boton_G/Sprite2D.frame = 6
+	$Boton_H/Sprite2D.frame = 7
+
+func _on_boton_d_pressed() -> void:
+	P_D.visible = true
+	P_B.visible = false
+	P_C.visible = false
+	P_E.visible = false
+	P_A.visible = false
+	P_F.visible = false
+	P_G.visible = false
+	P_H.visible = false
+	$Boton_A/Sprite2D.frame = 0
+	$Boton_B/Sprite2D.frame = 1
+	$Boton_C/Sprite2D.frame = 2
+	$Boton_D/Sprite2D.frame = 11
+	$Boton_E/Sprite2D.frame = 4
+	$Boton_F/Sprite2D.frame = 5
+	$Boton_G/Sprite2D.frame = 6
+	$Boton_H/Sprite2D.frame = 7
+
+func _on_agregar_a_pressed() -> void:
+	$Boton_A/Sprite2D.frame = 0
+	P_A.visible = false
+	if B.visible or C.visible or D.visible or E.visible or F.visible or G.visible or H.visible == true:
+		A2.visible = true
+		GlobalData.estado_objetos[\"EA2\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	elif B2.visible or C2.visible or D2.visible or E2.visible or F2.visible or G2.visible or H2.visible == true:
+		A.visible = true
+		GlobalData.estado_objetos[\"EA1\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	else:
+		A.visible = true
+		$Boton_A.disabled = true
+		GlobalData.estado_objetos[\"EA1\"] = true
+
+func _on_agregar_b_pressed() -> void:
+	$Boton_B/Sprite2D.frame = 1
+	P_B.visible = false
+	if A.visible or C.visible or D.visible or E.visible or F.visible or G.visible or H.visible == true:
+		B2.visible = true
+		GlobalData.estado_objetos[\"EB2\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	elif A2.visible or C2.visible or D2.visible or E2.visible or F2.visible or G2.visible or H2.visible == true:
+		B.visible = true
+		GlobalData.estado_objetos[\"EB1\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	else:
+		B.visible = true
+		$Boton_B.disabled = true
+		GlobalData.estado_objetos[\"EB1\"] = true
+
+func _on_agregar_c_pressed() -> void:
+	$Boton_C/Sprite2D.frame = 2
+	P_C.visible = false
+	if B.visible or A.visible or D.visible or E.visible or F.visible or G.visible or H.visible == true:
+		C2.visible = true
+		GlobalData.estado_objetos[\"EC2\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	elif B2.visible or A2.visible or D2.visible or E2.visible or F2.visible or G2.visible or H2.visible == true:
+		C.visible = true
+		GlobalData.estado_objetos[\"EC1\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	else:
+		C.visible = true
+		$Boton_C.disabled = true
+		GlobalData.estado_objetos[\"EC1\"] = true
+
+func _on_agregar_d_pressed() -> void:
+	$Boton_D/Sprite2D.frame = 3
+	P_D.visible = false
+	if B.visible or C.visible or A.visible or E.visible or F.visible or G.visible or H.visible == true:
+		D2.visible = true
+		GlobalData.estado_objetos[\"ED2\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	elif B2.visible or C2.visible or A2.visible or E2.visible or F2.visible or G2.visible or H2.visible == true:
+		D.visible = true
+		GlobalData.estado_objetos[\"ED1\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	else:
+		D.visible = true
+		$Boton_D.disabled = true
+		GlobalData.estado_objetos[\"ED1\"] = true
+
+func _on_ea_1_pressed() -> void:
+	A.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EA1\"] = false
+	if $EB2.visible == true:
+		$Boton_B.disabled = true
+	if $EC2.visible == true:
+		$Boton_C.disabled = true
+	if $ED2.visible == true:
+		$Boton_D.disabled = true
+	if $EE2.visible == true:
+		$Boton_E.disabled = true
+	if $EF2.visible == true:
+		$Boton_F.disabled = true
+	if $EG2.visible == true:
+		$Boton_G.disabled = true
+	if $EH2.visible == true:
+		$Boton_H.disabled = true
+
+func _on_eb_1_pressed() -> void:
+	B.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EB1\"] = false
+	if $EA2.visible == true:
+		$Boton_A.disabled = true
+	if $EC2.visible == true:
+		$Boton_C.disabled = true
+	if $ED2.visible == true:
+		$Boton_D.disabled = true
+	if $EE2.visible == true:
+		$Boton_E.disabled = true
+	if $EF2.visible == true:
+		$Boton_F.disabled = true
+	if $EG2.visible == true:
+		$Boton_G.disabled = true
+	if $EH2.visible == true:
+		$Boton_H.disabled = true
+
+func _on_ec_1_pressed() -> void:
+	C.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EC1\"] = false
+	if $EB2.visible == true:
+		$Boton_B.disabled = true
+	if $EA2.visible == true:
+		$Boton_A.disabled = true
+	if $ED2.visible == true:
+		$Boton_D.disabled = true
+	if $EE2.visible == true:
+		$Boton_E.disabled = true
+	if $EF2.visible == true:
+		$Boton_F.disabled = true
+	if $EG2.visible == true:
+		$Boton_G.disabled = true
+	if $EH2.visible == true:
+		$Boton_H.disabled = true
+
+func _on_ed_1_pressed() -> void:
+	D.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"ED1\"] = false
+	if $EB2.visible == true:
+		$Boton_B.disabled = true
+	if $EC2.visible == true:
+		$Boton_C.disabled = true
+	if $EA2.visible == true:
+		$Boton_A.disabled = true
+	if $EE2.visible == true:
+		$Boton_E.disabled = true
+	if $EF2.visible == true:
+		$Boton_F.disabled = true
+	if $EG2.visible == true:
+		$Boton_G.disabled = true
+	if $EH2.visible == true:
+		$Boton_H.disabled = true
+
+func _on_ea_2_pressed() -> void:
+	A2.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EA2\"] = false
+	if $EB1.visible == true:
+		$Boton_B.disabled = true
+	if $EC1.visible == true:
+		$Boton_C.disabled = true
+	if $ED1.visible == true:
+		$Boton_D.disabled = true
+	if $EE1.visible == true:
+		$Boton_E.disabled = true
+	if $EF1.visible == true:
+		$Boton_F.disabled = true
+	if $EG1.visible == true:
+		$Boton_G.disabled = true
+	if $EH1.visible == true:
+		$Boton_H.disabled = true
+
+func _on_eb_2_pressed() -> void:
+	B2.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EB2\"] = false
+	if $EA1.visible == true:
+		$Boton_A.disabled = true
+	if $EC1.visible == true:
+		$Boton_C.disabled = true
+	if $ED1.visible == true:
+		$Boton_D.disabled = true
+	if $EE1.visible == true:
+		$Boton_E.disabled = true
+	if $EF1.visible == true:
+		$Boton_F.disabled = true
+	if $EG1.visible == true:
+		$Boton_G.disabled = true
+	if $EH1.visible == true:
+		$Boton_H.disabled = true
+
+func _on_ec_2_pressed() -> void:
+	C2.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EC2\"] = false
+	if $EB1.visible == true:
+		$Boton_B.disabled = true
+	if $EA1.visible == true:
+		$Boton_A.disabled = true
+	if $ED1.visible == true:
+		$Boton_D.disabled = true
+	if $EE1.visible == true:
+		$Boton_E.disabled = true
+	if $EF1.visible == true:
+		$Boton_F.disabled = true
+	if $EG1.visible == true:
+		$Boton_G.disabled = true
+	if $EH1.visible == true:
+		$Boton_H.disabled = true
+
+func _on_ed_2_pressed() -> void:
+	D2.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"ED2\"] = false
+	if $EB1.visible == true:
+		$Boton_B.disabled = true
+	if $EC1.visible == true:
+		$Boton_C.disabled = true
+	if $EA1.visible == true:
+		$Boton_A.disabled = true
+	if $EE1.visible == true:
+		$Boton_E.disabled = true
+	if $EF1.visible == true:
+		$Boton_F.disabled = true
+	if $EG1.visible == true:
+		$Boton_G.disabled = true
+	if $EH1.visible == true:
+		$Boton_H.disabled = true
+
+func _on_boton_e_pressed() -> void:
+	P_E.visible = true
+	P_B.visible = false
+	P_C.visible = false
+	P_D.visible = false
+	P_A.visible = false
+	P_F.visible = false
+	P_G.visible = false
+	P_H.visible = false
+	$Boton_A/Sprite2D.frame = 0
+	$Boton_B/Sprite2D.frame = 1
+	$Boton_C/Sprite2D.frame = 2
+	$Boton_D/Sprite2D.frame = 3
+	$Boton_E/Sprite2D.frame = 12
+	$Boton_F/Sprite2D.frame = 5
+	$Boton_G/Sprite2D.frame = 6
+	$Boton_H/Sprite2D.frame = 7
+
+func _on_boton_f_pressed() -> void:
+	P_F.visible = true
+	P_B.visible = false
+	P_C.visible = false
+	P_D.visible = false
+	P_A.visible = false
+	P_E.visible = false
+	P_G.visible = false
+	P_H.visible = false
+	$Boton_A/Sprite2D.frame = 0
+	$Boton_B/Sprite2D.frame = 1
+	$Boton_C/Sprite2D.frame = 2
+	$Boton_D/Sprite2D.frame = 3
+	$Boton_E/Sprite2D.frame = 4
+	$Boton_F/Sprite2D.frame = 13
+	$Boton_G/Sprite2D.frame = 6
+	$Boton_H/Sprite2D.frame = 7
+
+func _on_boton_g_pressed() -> void:
+	P_G.visible = true
+	P_B.visible = false
+	P_C.visible = false
+	P_D.visible = false
+	P_A.visible = false
+	P_F.visible = false
+	P_E.visible = false
+	P_H.visible = false
+	$Boton_A/Sprite2D.frame = 0
+	$Boton_B/Sprite2D.frame = 1
+	$Boton_C/Sprite2D.frame = 2
+	$Boton_D/Sprite2D.frame = 3
+	$Boton_E/Sprite2D.frame = 4
+	$Boton_F/Sprite2D.frame = 5
+	$Boton_G/Sprite2D.frame = 14
+	$Boton_H/Sprite2D.frame = 7
+
+func _on_boton_h_pressed() -> void:
+	P_H.visible = true
+	P_B.visible = false
+	P_C.visible = false
+	P_D.visible = false
+	P_A.visible = false
+	P_F.visible = false
+	P_G.visible = false
+	P_E.visible = false
+	$Boton_A/Sprite2D.frame = 0
+	$Boton_B/Sprite2D.frame = 1
+	$Boton_C/Sprite2D.frame = 2
+	$Boton_D/Sprite2D.frame = 3
+	$Boton_E/Sprite2D.frame = 4
+	$Boton_F/Sprite2D.frame = 5
+	$Boton_G/Sprite2D.frame = 6
+	$Boton_H/Sprite2D.frame = 15
+
+func _on_agregar_e_pressed() -> void:
+	$Boton_E/Sprite2D.frame = 4
+	P_E.visible = false
+	if B.visible or C.visible or D.visible or A.visible or F.visible or G.visible or H.visible == true:
+		E2.visible = true
+		GlobalData.estado_objetos[\"EE2\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	elif B2.visible or C2.visible or D2.visible or A2.visible or F2.visible or G2.visible or H2.visible == true:
+		E.visible = true
+		GlobalData.estado_objetos[\"EE1\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	else:
+		E.visible = true
+		$Boton_E.disabled = true
+		GlobalData.estado_objetos[\"EE1\"] = true
+
+func _on_agregar_f_pressed() -> void:
+	$Boton_F/Sprite2D.frame = 5
+	P_F.visible = false
+	if B.visible or C.visible or D.visible or E.visible or A.visible or G.visible or H.visible == true:
+		F2.visible = true
+		GlobalData.estado_objetos[\"EF2\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	elif B2.visible or C2.visible or D2.visible or E2.visible or A2.visible or G2.visible or H2.visible == true:
+		F.visible = true
+		GlobalData.estado_objetos[\"EF1\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	else:
+		F.visible = true
+		$Boton_F.disabled = true
+		GlobalData.estado_objetos[\"EF1\"] = true
+
+func _on_agregar_g_pressed() -> void:
+	$Boton_G/Sprite2D.frame = 6
+	P_G.visible = false
+	if B.visible or C.visible or D.visible or E.visible or F.visible or A.visible or H.visible == true:
+		G2.visible = true
+		GlobalData.estado_objetos[\"EG2\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	elif B2.visible or C2.visible or D2.visible or E2.visible or F2.visible or A2.visible or H2.visible == true:
+		G.visible = true
+		GlobalData.estado_objetos[\"EG1\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	else:
+		G.visible = true
+		$Boton_G.disabled = true
+		GlobalData.estado_objetos[\"EG1\"] = true
+
+func _on_agregar_h_pressed() -> void:
+	$Boton_H/Sprite2D.frame = 7
+	P_H.visible = false
+	if B.visible or C.visible or D.visible or E.visible or F.visible or G.visible or A.visible == true:
+		H2.visible = true
+		GlobalData.estado_objetos[\"EH2\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	elif B2.visible or C2.visible or D2.visible or E2.visible or F2.visible or G2.visible or A2.visible == true:
+		H.visible = true
+		GlobalData.estado_objetos[\"EH1\"] = true
+		$Boton_A.disabled = true
+		$Boton_B.disabled = true
+		$Boton_C.disabled = true
+		$Boton_D.disabled = true
+		$Boton_E.disabled = true
+		$Boton_F.disabled = true
+		$Boton_G.disabled = true
+		$Boton_H.disabled = true
+	else:
+		H.visible = true
+		$Boton_H.disabled = true
+		GlobalData.estado_objetos[\"EH1\"] = true
+
+func _on_ee_1_pressed() -> void:
+	E.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EE1\"] = false
+	if $EB2.visible == true:
+		$Boton_B.disabled = true
+	if $EC2.visible == true:
+		$Boton_C.disabled = true
+	if $ED2.visible == true:
+		$Boton_D.disabled = true
+	if $EA2.visible == true:
+		$Boton_A.disabled = true
+	if $EF2.visible == true:
+		$Boton_F.disabled = true
+	if $EG2.visible == true:
+		$Boton_G.disabled = true
+	if $EH2.visible == true:
+		$Boton_H.disabled = true
+
+func _on_ef_1_pressed() -> void:
+	F.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EF1\"] = false
+	if $EB2.visible == true:
+		$Boton_B.disabled = true
+	if $EC2.visible == true:
+		$Boton_C.disabled = true
+	if $ED2.visible == true:
+		$Boton_D.disabled = true
+	if $EE2.visible == true:
+		$Boton_E.disabled = true
+	if $EA2.visible == true:
+		$Boton_A.disabled = true
+	if $EG2.visible == true:
+		$Boton_G.disabled = true
+	if $EH2.visible == true:
+		$Boton_H.disabled = true
+
+func _on_eg_1_pressed() -> void:
+	G.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EG1\"] = false
+	if $EB2.visible == true:
+		$Boton_B.disabled = true
+	if $EC2.visible == true:
+		$Boton_C.disabled = true
+	if $ED2.visible == true:
+		$Boton_D.disabled = true
+	if $EE2.visible == true:
+		$Boton_E.disabled = true
+	if $EF2.visible == true:
+		$Boton_F.disabled = true
+	if $EA2.visible == true:
+		$Boton_A.disabled = true
+	if $EH2.visible == true:
+		$Boton_H.disabled = true
+
+func _on_eh_1_pressed() -> void:
+	H.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EH1\"] = false
+	if $EB2.visible == true:
+		$Boton_B.disabled = true
+	if $EC2.visible == true:
+		$Boton_C.disabled = true
+	if $ED2.visible == true:
+		$Boton_D.disabled = true
+	if $EE2.visible == true:
+		$Boton_E.disabled = true
+	if $EF2.visible == true:
+		$Boton_F.disabled = true
+	if $EG2.visible == true:
+		$Boton_G.disabled = true
+	if $EA2.visible == true:
+		$Boton_A.disabled = true
+
+func _on_ee_2_pressed() -> void:
+	E2.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EE2\"] = false
+	if $EB1.visible == true:
+		$Boton_B.disabled = true
+	if $EC1.visible == true:
+		$Boton_C.disabled = true
+	if $ED1.visible == true:
+		$Boton_D.disabled = true
+	if $EA1.visible == true:
+		$Boton_A.disabled = true
+	if $EF1.visible == true:
+		$Boton_F.disabled = true
+	if $EG1.visible == true:
+		$Boton_G.disabled = true
+	if $EH1.visible == true:
+		$Boton_H.disabled = true
+
+func _on_ef_2_pressed() -> void:
+	F2.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EF2\"] = false
+	if $EB1.visible == true:
+		$Boton_B.disabled = true
+	if $EC1.visible == true:
+		$Boton_C.disabled = true
+	if $ED1.visible == true:
+		$Boton_D.disabled = true
+	if $EE1.visible == true:
+		$Boton_E.disabled = true
+	if $EA1.visible == true:
+		$Boton_A.disabled = true
+	if $EG1.visible == true:
+		$Boton_G.disabled = true
+	if $EH1.visible == true:
+		$Boton_H.disabled = true
+
+func _on_eg_2_pressed() -> void:
+	G2.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EG2\"] = false
+	if $EB1.visible == true:
+		$Boton_B.disabled = true
+	if $EC1.visible == true:
+		$Boton_C.disabled = true
+	if $ED1.visible == true:
+		$Boton_D.disabled = true
+	if $EE1.visible == true:
+		$Boton_E.disabled = true
+	if $EF1.visible == true:
+		$Boton_F.disabled = true
+	if $EA1.visible == true:
+		$Boton_A.disabled = true
+	if $EH1.visible == true:
+		$Boton_H.disabled = true
+
+func _on_eh_2_pressed() -> void:
+	H2.visible = false
+	$Boton_A.disabled = false
+	$Boton_B.disabled = false
+	$Boton_C.disabled = false
+	$Boton_D.disabled = false
+	$Boton_E.disabled = false
+	$Boton_F.disabled = false
+	$Boton_G.disabled = false
+	$Boton_H.disabled = false
+	GlobalData.estado_objetos[\"EG2\"] = false
+	if $EB1.visible == true:
+		$Boton_B.disabled = true
+	if $EC1.visible == true:
+		$Boton_C.disabled = true
+	if $ED1.visible == true:
+		$Boton_D.disabled = true
+	if $EE1.visible == true:
+		$Boton_E.disabled = true
+	if $EF1.visible == true:
+		$Boton_F.disabled = true
+	if $EG1.visible == true:
+		$Boton_G.disabled = true
+	if $EA1.visible == true:
+		$Boton_A.disabled = true
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://node_3d.tscn\")
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_ep22w")
+
+[node name="SubViewport" parent="TextureRect" instance=ExtResource("1_b0kld")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 226.0
+offset_top = 53.0
+offset_right = 266.0
+offset_bottom = 93.0
+script = SubResource("GDScript_1d36f")
+
+[node name="Boton_A" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 244.0
+offset_top = 470.0
+offset_right = 276.0
+offset_bottom = 516.0
+scale = Vector2(3, 3)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_A"]
+texture_filter = 1
+position = Vector2(17, 17)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+
+[node name="Boton_B" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 402.0
+offset_top = 463.00003
+offset_right = 442.0
+offset_bottom = 511.00003
+scale = Vector2(3, 3)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_B"]
+texture_filter = 1
+position = Vector2(20.99999, 18.99999)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 1
+
+[node name="Boton_C" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 607.0
+offset_top = 450.0
+offset_right = 637.0
+offset_bottom = 502.0
+scale = Vector2(3, 3)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_C"]
+texture_filter = 1
+position = Vector2(15, 23)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 2
+
+[node name="Boton_D" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 791.0
+offset_top = 463.00003
+offset_right = 831.0
+offset_bottom = 511.00003
+scale = Vector2(3, 3)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_D"]
+texture_filter = 1
+position = Vector2(21, 19)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 3
+
+[node name="Boton_E" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 275.0
+offset_top = 139.0
+offset_right = 315.0
+offset_bottom = 189.0
+scale = Vector2(2.75, 2.75)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_E"]
+texture_filter = 1
+position = Vector2(20.666666, 21)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 4
+
+[node name="Boton_F" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 444.0
+offset_top = 133.0
+offset_right = 490.0
+offset_bottom = 185.0
+scale = Vector2(2.75, 2.75)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_F"]
+texture_filter = 1
+position = Vector2(22.666666, 23)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 5
+
+[node name="Boton_G" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 632.0
+offset_top = 122.0
+offset_right = 656.0
+offset_bottom = 180.0
+scale = Vector2(2.75, 2.75)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_G"]
+texture_filter = 1
+position = Vector2(10.999999, 28.666668)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 6
+
+[node name="Boton_H" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 785.0
+offset_top = 155.0
+offset_right = 831.0
+offset_bottom = 199.0
+scale = Vector2(2.75, 2.75)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_H"]
+texture_filter = 1
+position = Vector2(23, 14.999999)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 7
+
+[node name="Panel_A" type="Control" parent="Control"]
+anchors_preset = 0
+offset_left = 262.0
+offset_top = 44.0
+offset_right = 302.0
+offset_bottom = 84.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_A"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_A"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.325
+anchor_top = 0.275
+anchor_right = 1.925
+anchor_bottom = 0.275
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Acido Acetico"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_A"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.6
+anchor_top = -0.425
+anchor_right = 9.75
+anchor_bottom = 2.4
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Líquido transparente 
+e incoloro con un olor 
+fuerte similar al del 
+vinagre. 
+Es peligroso"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_A" type="Button" parent="Control/Panel_A"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_B" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = 448.0
+offset_top = 74.0
+offset_right = 488.0
+offset_bottom = 114.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_B"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_B"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.35
+anchor_top = 0.275
+anchor_right = 2.05
+anchor_bottom = 0.575
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Bicarbonato de 
+Sodio"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_B"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.1
+anchor_top = 0.75
+anchor_right = -0.1
+anchor_bottom = 2.65
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "polvo blanco cristalino
+ que se utiliza
+ comunmente en 
+repostería, en 
+productos de limpieza
+ y cosmética."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_B" type="Button" parent="Control/Panel_B"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_C" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = 148.0
+offset_top = 58.0
+offset_right = 188.0
+offset_bottom = 98.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_C"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_C"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.275
+anchor_top = 0.15
+anchor_right = 1.125
+anchor_bottom = 0.45
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Peroxido de 
+Hidrogeno"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_C"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "el agua es agua nada más
+que decir"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_C" type="Button" parent="Control/Panel_C"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_D" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = 346.0
+offset_top = 69.0
+offset_right = 386.0
+offset_bottom = 109.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_D"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_D"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.85
+anchor_top = 0.15
+anchor_right = 0.95
+anchor_bottom = 0.45
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Yoduro de 
+Potasio"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_D"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "el agua es agua nada más
+que decir"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_D" type="Button" parent="Control/Panel_D"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_E" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = 336.0
+offset_top = -15.0
+offset_right = 376.0
+offset_bottom = 25.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_E"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_E"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.275
+anchor_top = 0.225
+anchor_right = 0.375
+anchor_bottom = 0.225
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Azufre"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_E"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "el agua es agua nada más
+que decir"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_E" type="Button" parent="Control/Panel_E"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_F" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = 502.0
+offset_top = -24.0
+offset_right = 542.0
+offset_bottom = 16.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_F"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_F"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.8
+anchor_top = 0.225
+anchor_right = 1.15
+anchor_bottom = 0.525
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Sulfato de 
+Cobre"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_F"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "el agua es agua nada más
+que decir"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_F" type="Button" parent="Control/Panel_F"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_G" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = 169.0
+offset_top = -8.0
+offset_right = 209.0
+offset_bottom = 32.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_G"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_G"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.275
+anchor_top = 0.225
+anchor_right = 1.875
+anchor_bottom = 0.225
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Alcohol Etilico"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_G"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "el agua es agua nada más
+que decir"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_G" type="Button" parent="Control/Panel_G"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_H" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = 335.0
+offset_top = -15.0
+offset_right = 375.0
+offset_bottom = 25.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_H"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_H"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.175
+anchor_top = 0.225
+anchor_right = 1.625
+anchor_bottom = 0.525
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Carbonato de 
+Sodio"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_H"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "el agua es agua nada más
+que decir"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_H" type="Button" parent="Control/Panel_H"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 1110.0
+offset_top = 28.0
+offset_right = 1214.0
+offset_bottom = 133.0
+color = Color(0.5264226, 0.5264226, 0.5264226, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 1227.0
+offset_top = 28.0
+offset_right = 1331.0
+offset_bottom = 133.0
+color = Color(0.52610093, 0.52610093, 0.52610093, 1)
+
+[node name="EA1" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1134.0
+offset_top = 37.0
+offset_right = 1166.0
+offset_bottom = 83.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EA1"]
+texture_filter = 1
+position = Vector2(17, 17)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+
+[node name="EB1" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1124.0
+offset_top = 31.0
+offset_right = 1164.0
+offset_bottom = 79.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EB1"]
+texture_filter = 1
+position = Vector2(20.99999, 18.99999)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 1
+
+[node name="EC1" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1137.0
+offset_top = 30.0
+offset_right = 1167.0
+offset_bottom = 82.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EC1"]
+texture_filter = 1
+position = Vector2(15, 23)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 2
+
+[node name="ED1" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1124.0
+offset_top = 34.0
+offset_right = 1164.0
+offset_bottom = 82.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/ED1"]
+texture_filter = 1
+position = Vector2(21, 19)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 3
+
+[node name="EE1" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1125.0
+offset_top = 33.0
+offset_right = 1165.0
+offset_bottom = 83.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EE1"]
+texture_filter = 1
+position = Vector2(20.666666, 21)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 4
+
+[node name="EF1" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1115.0
+offset_top = 30.0
+offset_right = 1161.0
+offset_bottom = 82.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EF1"]
+texture_filter = 1
+position = Vector2(22.666666, 23)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 5
+
+[node name="EG1" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1140.0
+offset_top = 25.0
+offset_right = 1164.0
+offset_bottom = 83.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EG1"]
+texture_filter = 1
+position = Vector2(10.999999, 28.666668)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 6
+
+[node name="EH1" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1119.0
+offset_top = 37.0
+offset_right = 1165.0
+offset_bottom = 80.99999
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EH1"]
+texture_filter = 1
+position = Vector2(23, 14.999999)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 7
+
+[node name="EA2" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1251.0
+offset_top = 37.0
+offset_right = 1283.0
+offset_bottom = 83.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EA2"]
+texture_filter = 1
+position = Vector2(17, 17)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+
+[node name="EB2" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1241.0
+offset_top = 31.0
+offset_right = 1281.0
+offset_bottom = 79.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EB2"]
+texture_filter = 1
+position = Vector2(20.99999, 18.99999)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 1
+
+[node name="EC2" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1254.0
+offset_top = 30.0
+offset_right = 1284.0
+offset_bottom = 82.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EC2"]
+texture_filter = 1
+position = Vector2(15, 23)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 2
+
+[node name="ED2" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1241.0
+offset_top = 34.0
+offset_right = 1281.0
+offset_bottom = 82.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/ED2"]
+texture_filter = 1
+position = Vector2(21, 19)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 3
+
+[node name="EE2" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1240.0
+offset_top = 33.0
+offset_right = 1280.0
+offset_bottom = 83.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EE2"]
+texture_filter = 1
+position = Vector2(20.666666, 21)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 4
+
+[node name="EF2" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1234.0
+offset_top = 28.0
+offset_right = 1280.0
+offset_bottom = 80.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EF2"]
+texture_filter = 1
+position = Vector2(22.666666, 23)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 5
+
+[node name="EG2" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1260.0
+offset_top = 25.0
+offset_right = 1284.0
+offset_bottom = 83.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EG2"]
+texture_filter = 1
+position = Vector2(10.999999, 28.666668)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 6
+
+[node name="EH2" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1231.0
+offset_top = 35.0
+offset_right = 1277.0
+offset_bottom = 78.99999
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EH2"]
+texture_filter = 1
+position = Vector2(23, 14.999999)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 7
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1377.0
+offset_top = 525.0
+offset_right = 1513.0
+offset_bottom = 661.0
+icon = ExtResource("7_swha6")
+flat = true
+
+[connection signal="pressed" from="Control/Boton_A" to="Control" method="_on_boton_a_pressed"]
+[connection signal="pressed" from="Control/Boton_B" to="Control" method="_on_boton_b_pressed"]
+[connection signal="pressed" from="Control/Boton_C" to="Control" method="_on_boton_c_pressed"]
+[connection signal="pressed" from="Control/Boton_D" to="Control" method="_on_boton_d_pressed"]
+[connection signal="pressed" from="Control/Boton_E" to="Control" method="_on_boton_e_pressed"]
+[connection signal="pressed" from="Control/Boton_F" to="Control" method="_on_boton_f_pressed"]
+[connection signal="pressed" from="Control/Boton_G" to="Control" method="_on_boton_g_pressed"]
+[connection signal="pressed" from="Control/Boton_H" to="Control" method="_on_boton_h_pressed"]
+[connection signal="pressed" from="Control/Panel_A/Agregar_A" to="Control" method="_on_agregar_a_pressed"]
+[connection signal="pressed" from="Control/Panel_B/Agregar_B" to="Control" method="_on_agregar_b_pressed"]
+[connection signal="pressed" from="Control/Panel_C/Agregar_C" to="Control" method="_on_agregar_c_pressed"]
+[connection signal="pressed" from="Control/Panel_D/Agregar_D" to="Control" method="_on_agregar_d_pressed"]
+[connection signal="pressed" from="Control/Panel_E/Agregar_E" to="Control" method="_on_agregar_e_pressed"]
+[connection signal="pressed" from="Control/Panel_F/Agregar_F" to="Control" method="_on_agregar_f_pressed"]
+[connection signal="pressed" from="Control/Panel_G/Agregar_G" to="Control" method="_on_agregar_g_pressed"]
+[connection signal="pressed" from="Control/Panel_H/Agregar_H" to="Control" method="_on_agregar_h_pressed"]
+[connection signal="pressed" from="Control/EA1" to="Control" method="_on_ea_1_pressed"]
+[connection signal="pressed" from="Control/EB1" to="Control" method="_on_eb_1_pressed"]
+[connection signal="pressed" from="Control/EC1" to="Control" method="_on_ec_1_pressed"]
+[connection signal="pressed" from="Control/ED1" to="Control" method="_on_ed_1_pressed"]
+[connection signal="pressed" from="Control/EE1" to="Control" method="_on_ee_1_pressed"]
+[connection signal="pressed" from="Control/EF1" to="Control" method="_on_ef_1_pressed"]
+[connection signal="pressed" from="Control/EG1" to="Control" method="_on_eg_1_pressed"]
+[connection signal="pressed" from="Control/EH1" to="Control" method="_on_eh_1_pressed"]
+[connection signal="pressed" from="Control/EA2" to="Control" method="_on_ea_2_pressed"]
+[connection signal="pressed" from="Control/EB2" to="Control" method="_on_eb_2_pressed"]
+[connection signal="pressed" from="Control/EC2" to="Control" method="_on_ec_2_pressed"]
+[connection signal="pressed" from="Control/ED2" to="Control" method="_on_ed_2_pressed"]
+[connection signal="pressed" from="Control/EE2" to="Control" method="_on_ee_2_pressed"]
+[connection signal="pressed" from="Control/EF2" to="Control" method="_on_ef_2_pressed"]
+[connection signal="pressed" from="Control/EG2" to="Control" method="_on_eg_2_pressed"]
+[connection signal="pressed" from="Control/EH2" to="Control" method="_on_eh_2_pressed"]
+[connection signal="pressed" from="Button" to="Control" method="_on_button_pressed"]
