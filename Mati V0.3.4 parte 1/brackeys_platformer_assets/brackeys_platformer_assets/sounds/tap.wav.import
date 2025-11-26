@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://u1wjps4gd3pl"
+path="res://.godot/imported/tap.wav-f64a61274a491702b712583caebbf5cf.sample"
+
+[deps]
+
+source_file="res://Mati V0.3.2 parte 1/brackeys_platformer_assets/brackeys_platformer_assets/sounds/tap.wav"
+dest_files=["res://.godot/imported/tap.wav-f64a61274a491702b712583caebbf5cf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
