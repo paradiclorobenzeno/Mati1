@@ -1,0 +1,945 @@
+[gd_scene load_steps=24 format=3 uid="uid://d4iv1bqwyvh6u"]
+
+[ext_resource type="Script" uid="uid://c0k7ncmoj8ybi" path="res://node.gd" id="1_f0urt"]
+[ext_resource type="PackedScene" uid="uid://dl5hsekju6aqm" path="res://IS.tscn" id="1_r657h"]
+[ext_resource type="Texture2D" uid="uid://cehjluk2aqcls" path="res://Pgi.png" id="2_f0urt"]
+[ext_resource type="Texture2D" uid="uid://dicniwkl0n2co" path="res://icon.svg" id="3_jfkdj"]
+[ext_resource type="Script" uid="uid://1hk5timw24ih" path="res://configuraciones.gd" id="4_wt6go"]
+[ext_resource type="Texture2D" uid="uid://jrn3i80juoa6" path="res://Untitled 09-15-2025 11-02-53.png" id="5_436f3"]
+[ext_resource type="Texture2D" uid="uid://gpmvdij0o52t" path="res://pngtree-white-sugar-png-image_12837048.png" id="6_bcos8"]
+[ext_resource type="AudioStream" uid="uid://dlpmswxpxi0cf" path="res://miscellaneous-thoughts-246558.mp3" id="7_cmsyx"]
+[ext_resource type="FontFile" uid="uid://f71bj77sai0j" path="res://Mati V0.3.2 parte 1/brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="8_feppd"]
+[ext_resource type="Texture2D" uid="uid://blg30ge8d1jst" path="res://Mati V0.3.2 parte 1/brackeys_platformer_assets/brackeys_platformer_assets/sprites/Untitled 11-08-2025 05-06-59.png" id="9_aeaoo"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sps8e"]
+viewport_path = NodePath("TextureRect/SubViewport")
+
+[sub_resource type="GDScript" id="GDScript_bnlop"]
+script/source = "extends Control
+
+var A = 0
+var B = 0
+var C = 0
+var D = 0
+var E = 0
+var F = 0
+var G = 0
+var H = 0
+var AS = 0
+var BS = 0
+var CS = 0
+var DS = 0
+var ES = 0
+var FS = 0
+var GS = 0
+var HS = 0
+var S = 0
+
+func _ready() -> void:
+	var _EA1_v = GlobalData.estado_objetos.get(\"EA1\", false)
+	var _EA2_v = GlobalData.estado_objetos.get(\"EA2\", false)
+	var _EB1_v = GlobalData.estado_objetos.get(\"EB1\", false)
+	var _EB2_v = GlobalData.estado_objetos.get(\"EB2\", false)
+	var _EC1_v = GlobalData.estado_objetos.get(\"EC1\", false)
+	var _EC2_v = GlobalData.estado_objetos.get(\"EC2\", false)
+	var _ED1_v = GlobalData.estado_objetos.get(\"ED1\", false)
+	var _ED2_v = GlobalData.estado_objetos.get(\"ED2\", false)
+	var _EE1_v = GlobalData.estado_objetos.get(\"EE1\", false)
+	var _EE2_v = GlobalData.estado_objetos.get(\"EE2\", false)
+	var _EF1_v = GlobalData.estado_objetos.get(\"EF1\", false)
+	var _EF2_v = GlobalData.estado_objetos.get(\"EF2\", false)
+	var _EG1_v = GlobalData.estado_objetos.get(\"EG1\", false)
+	var _EG2_v = GlobalData.estado_objetos.get(\"EG2\", false)
+	var _EH1_v = GlobalData.estado_objetos.get(\"EH1\", false)
+	var _EH2_v = GlobalData.estado_objetos.get(\"EH2\", false)
+	$\"../AnimationPlayer\".play(\"Quieto\")
+	$\"../EA1\".visible = false
+	$\"../EB1\".visible = false
+	$\"../EC1\".visible = false
+	$\"../ED1\".visible = false
+	$\"../EE1\".visible = false
+	$\"../EF1\".visible = false
+	$\"../EG1\".visible = false
+	$\"../EH1\".visible = false
+	$\"../EA2\".visible = false
+	$\"../EB2\".visible = false
+	$\"../EC2\".visible = false
+	$\"../ED2\".visible = false
+	$\"../EE2\".visible = false
+	$\"../EF2\".visible = false
+	$\"../EG2\".visible = false
+	$\"../EH2\".visible = false
+	$\"../AnimationPlayer\".play(\"Quieto\")
+	$\"../polvo\".visible = false
+	
+	
+	if _EA1_v:
+		$\"../EA1\".visible = true
+	if _EB1_v:
+		$\"../EB1\".visible = true
+	if _EC1_v:
+		$\"../EC1\".visible = true
+	if _ED1_v:
+		$\"../ED1\".visible = true
+	if _EE1_v:
+		$\"../EE1\".visible = true
+	if _EF1_v:
+		$\"../EF1\".visible = true
+	if _EG1_v:
+		$\"../EG1\".visible = true
+	if _EH1_v:
+		$\"../EH1\".visible = true
+	if _EA2_v:
+		$\"../EA2\".visible = true
+	if _EB2_v:
+		$\"../EB2\".visible = true
+	if _EC2_v:
+		$\"../EC2\".visible = true
+	if _ED2_v:
+		$\"../ED2\".visible = true
+	if _EE2_v:
+		$\"../EE2\".visible = true
+	if _EF2_v:
+		$\"../EF2\".visible = true
+	if _EG2_v:
+		$\"../EG2\".visible = true
+	if _EH2_v:
+		$\"../EH2\".visible = true
+
+func _on_configuranción_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://node_3d.tscn\")
+
+func _on_ea_1_pressed() -> void:
+	AS = A + 2
+	if CS>0 or GS>0:
+		$\"../ColorRect3\".color = Color(0.0, 0.0, 0.0, 1.0)
+	else:
+		$\"../ColorRect2\".color = Color(0.0, 0.0, 0.0, 1.0)
+
+func _on_eb_1_pressed() -> void:
+	BS = B + 2
+	$\"../polvo\".visible = true
+	if $\"../ED2\".visible == true or $\"../EE2\".visible == true or $\"../EF2\".visible == true or $\"../EH2\".visible == true:
+		$\"../ED2\".disabled = true
+		$\"../EE2\".disabled = true
+		$\"../EF2\".disabled = true
+		$\"../EH2\".disabled = true
+
+func _on_ec_1_pressed() -> void:
+	CS = C + 2
+	if AS>0 or GS>0:
+		$\"../ColorRect3\".color = Color()
+	else:
+		$\"../ColorRect2\".color = Color()
+
+
+func _on_ed_1_pressed() -> void:
+	DS = D + 2
+	$\"../polvo\".visible = true
+	if $\"../EB2\".visible == true or $\"../EE2\".visible == true or $\"../EF2\".visible == true or $\"../EH2\".visible == true:
+		$\"../EB2\".disabled = true
+		$\"../EE2\".disabled = true
+		$\"../EF2\".disabled = true
+		$\"../EH2\".disabled = true
+
+func _on_ee_1_pressed() -> void:
+	ES = E + 2
+	$\"../polvo\".visible = true
+	if $\"../ED2\".visible == true or $\"../EB2\".visible == true or $\"../EF2\".visible == true or $\"../EH2\".visible == true:
+		$\"../ED2\".disabled = true
+		$\"../EB2\".disabled = true
+		$\"../EF2\".disabled = true
+		$\"../EH2\".disabled = true
+
+func _on_ef_1_pressed() -> void:
+	FS = F + 2
+	$\"../polvo\".visible = true
+	if $\"../ED2\".visible == true or $\"../EE2\".visible == true or $\"../EB2\".visible == true or $\"../EH2\".visible == true:
+		$\"../ED2\".disabled = true
+		$\"../EE2\".disabled = true
+		$\"../EB2\".disabled = true
+		$\"../EH2\".disabled = true
+
+func _on_eg_1_pressed() -> void:
+	GS = A + 2
+	if CS>0 or AS>0:
+		$\"../ColorRect3\".color = Color(0.0, 0.0, 0.0, 1.0)
+	else:
+		$\"../ColorRect2\".color = Color(0.0, 0.0, 0.0, 1.0)
+
+
+func _on_eh_1_pressed() -> void:
+	HS = H + 2
+	$\"../polvo\".visible = true
+	if $\"../ED2\".visible == true or $\"../EE2\".visible == true or $\"../EF2\".visible == true or $\"../EB2\".visible == true:
+		$\"../ED2\".disabled = true
+		$\"../EE2\".disabled = true
+		$\"../EF2\".disabled = true
+		$\"../EB2\".disabled = true
+
+func _on_ea_2_pressed() -> void:
+	AS = A + 2
+	if BS>0 or CS>0 or DS>0 or ES>0 or FS>0 or GS>0 or HS>0:
+		$\"../ColorRect3\".color = Color()
+	else:
+		$\"../ColorRect2\".color = Color()
+
+
+func _on_eb_2_pressed() -> void:
+	BS = B + 2
+	$\"../polvo\".visible = true
+	if $\"../ED1\".visible == true or $\"../EE1\".visible == true or $\"../EF1\".visible == true or $\"../EH1\".visible == true:
+		$\"../ED1\".disabled = true
+		$\"../EE1\".disabled = true
+		$\"../EF1\".disabled = true
+		$\"../EH1\".disabled = true
+
+
+func _on_ec_2_pressed() -> void:
+	CS = C + 2
+	if AS>0 or GS>0:
+		$\"../ColorRect3\".color = Color()
+	else:
+		$\"../ColorRect2\".color = Color() 
+
+
+func _on_ed_2_pressed() -> void:
+	DS = D + 2
+	$\"../polvo\".visible = true
+	if $\"../EB1\".visible == true or $\"../EE1\".visible == true or $\"../EF1\".visible == true or $\"../EH1\".visible == true:
+		$\"../EB1\".disabled = true
+		$\"../EE1\".disabled = true
+		$\"../EF1\".disabled = true
+		$\"../EH1\".disabled = true
+
+func _on_ee_2_pressed() -> void:
+	ES = E + 2
+	$\"../polvo\".visible = true
+	if $\"../ED1\".visible == true or $\"../EB1\".visible == true or $\"../EF1\".visible == true or $\"../EH1\".visible == true:
+		$\"../ED1\".disabled = true
+		$\"../EB1\".disabled = true
+		$\"../EF1\".disabled = true
+		$\"../EH1\".disabled = true
+
+
+func _on_ef_2_pressed() -> void:
+	FS = F + 2
+	$\"../polvo\".visible = true
+	if $\"../ED1\".visible == true or $\"../EE1\".visible == true or $\"../EB1\".visible == true or $\"../EH1\".visible == true:
+		$\"../ED1\".disabled = true
+		$\"../EE1\".disabled = true
+		$\"../EB1\".disabled = true
+		$\"../EH1\".disabled = true
+
+
+func _on_eg_2_pressed() -> void:
+	GS = G + 2
+	if CS>0 or AS>0:
+		$\"../ColorRect3\".color = Color()
+	else:
+		$\"../ColorRect2\".color = Color()
+
+
+func _on_eh_2_pressed() -> void:
+	HS = H + 2
+	$\"../polvo\".visible = true
+	if $\"../ED1\".visible == true or $\"../EE1\".visible == true or $\"../EF1\".visible == true or $\"../EB1\".visible == true:
+		$\"../ED1\".disabled = true
+		$\"../EE1\".disabled = true
+		$\"../EF1\".disabled = true
+		$\"../EB1\".disabled = true
+
+func _on_mezclar_pressed() -> void:
+	$\"../ColorRect2\".color = Color(1.0, 1.0, 1.0, 0.0)
+	$\"../ColorRect3\".color = Color(1.0, 1.0, 1.0, 0.0)
+	$\"../polvo\".visible = false
+	if AS>0 and BS>0:
+		$\"../ColorRect2\".color = Color()
+	if AS>0 and CS>0:
+		$\"../ColorRect\".color = Color()
+	if AS>0 and DS>0:
+		$\"../ColorRect2\".color = Color()
+	if AS>0 and ES>0:
+		$\"../ColorRect2\".color = Color()
+	if AS>0 and FS>0:
+		$\"../ColorRect2\".color = Color()
+	if AS>0 and GS>0:
+		$\"../ColorRect\".color = Color()
+	if AS>0 and HS>0:
+		$\"../ColorRect2\".color = Color()
+	if BS>0 and CS>0:
+		$\"../ColorRect2\".color = Color()
+	if BS>0 and GS>0:
+		$\"../ColorRect2\".color = Color()
+	if CS>0 and DS>0:
+		$\"../ColorRect2\".color = Color()
+	if CS>0 and ES>0:
+		$\"../ColorRect2\".color = Color()
+	if CS>0 and FS>0:
+		$\"../ColorRect2\".color = Color()
+	if CS>0 and GS>0:
+		$\"../ColorRect\".color = Color()
+	if CS>0 and HS>0:
+		$\"../ColorRect2\".color = Color()
+	if DS>0 and GS>0:
+		$\"../ColorRect2\".color = Color()
+	if ES>0 and GS>0:
+		$\"../ColorRect2\".color = Color()
+	if FS>0 and GS>0:
+		$\"../ColorRect2\".color = Color()
+	if GS>0 and HS>0:
+		$\"../ColorRect2\".color = Color()
+"
+
+[sub_resource type="Animation" id="Animation_dg77c"]
+resource_name = "Agregar"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_ycdy4"]
+resource_name = "Explosion"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_w48qg"]
+resource_name = "Mezclar"
+length = 2.0
+
+[sub_resource type="Animation" id="Animation_vivmo"]
+resource_name = "Nueva receta"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(792, 558), Vector2(792, 435), Vector2(792, 435), Vector2(792, 558)]
+}
+
+[sub_resource type="Animation" id="Animation_4c57u"]
+resource_name = "Quieto"
+length = 1.09
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.76666665, 0.93333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_efxa6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(792, 558)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ycdy4"]
+_data = {
+&"Agregar": SubResource("Animation_dg77c"),
+&"Explosion": SubResource("Animation_ycdy4"),
+&"Mezclar": SubResource("Animation_w48qg"),
+&"Nueva receta": SubResource("Animation_vivmo"),
+&"Quieto": SubResource("Animation_4c57u"),
+&"RESET": SubResource("Animation_efxa6")
+}
+
+[sub_resource type="Animation" id="Animation_2cqfq"]
+resource_name = "Mezclar"
+length = 2.0
+
+[sub_resource type="Animation" id="Animation_yaehf"]
+resource_name = "Nueva Receta"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(792, 558), Vector2(792, 442.5), Vector2(792, 442.5), Vector2(792, 558)]
+}
+
+[sub_resource type="Animation" id="Animation_074og"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(792, 558)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cegan"]
+_data = {
+&"Mezclar": SubResource("Animation_2cqfq"),
+&"Nueva Receta": SubResource("Animation_yaehf"),
+&"RESET": SubResource("Animation_074og")
+}
+
+[node name="Node" type="Node"]
+script = ExtResource("1_f0urt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = SubResource("ViewportTexture_sps8e")
+
+[node name="SubViewport" parent="TextureRect" instance=ExtResource("1_r657h")]
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(781.00006, 327)
+scale = Vector2(15, 15)
+texture = ExtResource("2_f0urt")
+hframes = 10
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 179.0
+offset_top = 19.0
+offset_right = 179.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_bnlop")
+
+[node name="Mezclar" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 536.0
+offset_right = 603.0
+offset_bottom = 672.0
+scale = Vector2(1.98766, 0.398365)
+icon = ExtResource("3_jfkdj")
+
+[node name="Reset" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 50.0
+offset_right = 617.0
+offset_bottom = 186.0
+scale = Vector2(1.96861, 0.569466)
+icon = ExtResource("3_jfkdj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 735.0
+offset_top = 393.0
+offset_right = 745.0
+offset_bottom = 403.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8, 4)
+size_flags_horizontal = 0
+color = Color(1, 1, 1, 0)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 735.5
+offset_top = 412.5
+offset_right = 745.5
+offset_bottom = 422.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8, 2)
+color = Color(1, 1, 1, 0)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 734.5
+offset_top = 392.5
+offset_right = 744.5
+offset_bottom = 402.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8, 2)
+color = Color(1, 1, 1, 0)
+
+[node name="Configuraciones" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 163.0
+offset_top = 9.0
+offset_right = 203.0
+offset_bottom = 49.0
+script = ExtResource("4_wt6go")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Configuraciones"]
+layout_mode = 0
+offset_left = 1227.0
+offset_top = 361.0
+offset_right = 1363.0
+offset_bottom = 643.0
+theme_override_constants/separation = 10
+
+[node name="Configuranción" type="Button" parent="Configuraciones/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_jfkdj")
+flat = true
+
+[node name="Salir" type="Button" parent="Configuraciones/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_jfkdj")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(777.5, 375.5)
+scale = Vector2(5, 5)
+texture = ExtResource("5_436f3")
+hframes = 5
+vframes = 3
+
+[node name="polvo" type="Sprite2D" parent="."]
+position = Vector2(776.5, 417.5)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("6_bcos8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cmsyx")
+parameters/looping = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ycdy4")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cegan")
+}
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 792.0
+offset_top = 558.0
+offset_right = 1144.0
+offset_bottom = 581.00006
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("8_feppd")
+text = "Aprendiste una nueva receta"
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 1301.0
+offset_top = 56.0
+offset_right = 1405.0
+offset_bottom = 161.0
+color = Color(0.5264226, 0.5264226, 0.5264226, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = 1418.0
+offset_top = 56.0
+offset_right = 1522.0
+offset_bottom = 161.0
+color = Color(0.52610093, 0.52610093, 0.52610093, 1)
+
+[node name="EA1" type="Button" parent="."]
+clip_contents = true
+offset_left = 1325.0
+offset_top = 65.0
+offset_right = 1357.0
+offset_bottom = 111.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EA1"]
+texture_filter = 1
+position = Vector2(17, 17)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+
+[node name="EB1" type="Button" parent="."]
+clip_contents = true
+offset_left = 1315.0
+offset_top = 59.0
+offset_right = 1355.0
+offset_bottom = 107.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EB1"]
+texture_filter = 1
+position = Vector2(20.99999, 18.99999)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 1
+
+[node name="EC1" type="Button" parent="."]
+clip_contents = true
+offset_left = 1328.0
+offset_top = 58.0
+offset_right = 1358.0
+offset_bottom = 110.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EC1"]
+texture_filter = 1
+position = Vector2(15, 23)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 2
+
+[node name="ED1" type="Button" parent="."]
+clip_contents = true
+offset_left = 1315.0
+offset_top = 62.0
+offset_right = 1355.0
+offset_bottom = 110.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ED1"]
+texture_filter = 1
+position = Vector2(21, 19)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 3
+
+[node name="EE1" type="Button" parent="."]
+clip_contents = true
+offset_left = 1316.0
+offset_top = 61.0
+offset_right = 1356.0
+offset_bottom = 111.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EE1"]
+texture_filter = 1
+position = Vector2(20.666666, 21)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 4
+
+[node name="EF1" type="Button" parent="."]
+clip_contents = true
+offset_left = 1306.0
+offset_top = 58.0
+offset_right = 1352.0
+offset_bottom = 110.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EF1"]
+texture_filter = 1
+position = Vector2(22.666666, 23)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 5
+
+[node name="EG1" type="Button" parent="."]
+clip_contents = true
+offset_left = 1331.0
+offset_top = 53.0
+offset_right = 1355.0
+offset_bottom = 111.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EG1"]
+texture_filter = 1
+position = Vector2(10.999999, 28.666668)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 6
+
+[node name="EH1" type="Button" parent="."]
+clip_contents = true
+offset_left = 1310.0
+offset_top = 65.0
+offset_right = 1356.0
+offset_bottom = 108.99999
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EH1"]
+texture_filter = 1
+position = Vector2(23, 14.999999)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 7
+
+[node name="EA2" type="Button" parent="."]
+clip_contents = true
+offset_left = 1442.0
+offset_top = 65.0
+offset_right = 1474.0
+offset_bottom = 111.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EA2"]
+texture_filter = 1
+position = Vector2(17, 17)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+
+[node name="EB2" type="Button" parent="."]
+clip_contents = true
+offset_left = 1432.0
+offset_top = 59.0
+offset_right = 1472.0
+offset_bottom = 107.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EB2"]
+texture_filter = 1
+position = Vector2(20.99999, 18.99999)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 1
+
+[node name="EC2" type="Button" parent="."]
+clip_contents = true
+offset_left = 1445.0
+offset_top = 58.0
+offset_right = 1475.0
+offset_bottom = 110.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EC2"]
+texture_filter = 1
+position = Vector2(15, 23)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 2
+
+[node name="ED2" type="Button" parent="."]
+clip_contents = true
+offset_left = 1432.0
+offset_top = 62.0
+offset_right = 1472.0
+offset_bottom = 110.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ED2"]
+texture_filter = 1
+position = Vector2(21, 19)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 3
+
+[node name="EE2" type="Button" parent="."]
+clip_contents = true
+offset_left = 1431.0
+offset_top = 61.0
+offset_right = 1471.0
+offset_bottom = 111.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EE2"]
+texture_filter = 1
+position = Vector2(20.666666, 21)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 4
+
+[node name="EF2" type="Button" parent="."]
+clip_contents = true
+offset_left = 1425.0
+offset_top = 56.0
+offset_right = 1471.0
+offset_bottom = 108.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EF2"]
+texture_filter = 1
+position = Vector2(22.666666, 23)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 5
+
+[node name="EG2" type="Button" parent="."]
+clip_contents = true
+offset_left = 1451.0
+offset_top = 53.0
+offset_right = 1475.0
+offset_bottom = 111.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EG2"]
+texture_filter = 1
+position = Vector2(10.999999, 28.666668)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 6
+
+[node name="EH2" type="Button" parent="."]
+clip_contents = true
+offset_left = 1422.0
+offset_top = 63.0
+offset_right = 1468.0
+offset_bottom = 106.99999
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EH2"]
+texture_filter = 1
+position = Vector2(23, 14.999999)
+texture = ExtResource("9_aeaoo")
+hframes = 8
+vframes = 2
+frame = 7
+
+[connection signal="pressed" from="Control/Mezclar" to="Control" method="_on_mezclar_pressed"]
+[connection signal="pressed" from="Configuraciones/VBoxContainer/Configuranción" to="." method="_on_configuranción_pressed"]
+[connection signal="pressed" from="Configuraciones/VBoxContainer/Salir" to="Configuraciones" method="_on_salir_pressed"]
