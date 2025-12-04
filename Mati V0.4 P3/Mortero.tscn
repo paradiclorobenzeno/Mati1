@@ -1,0 +1,747 @@
+[gd_scene load_steps=27 format=3 uid="uid://dlewm75aho0j"]
+
+[ext_resource type="PackedScene" uid="uid://61hjwgfestvm" path="res://sub_viewport2.tscn" id="1_mmgya"]
+[ext_resource type="Texture2D" uid="uid://cehjluk2aqcls" path="res://Pgi.png" id="2_elhp4"]
+[ext_resource type="Texture2D" uid="uid://0une1hsvbt0d" path="res://Untitled 11-29-2025 07-48-44.png" id="3_4pw50"]
+[ext_resource type="FontFile" uid="uid://bpkf7uptm5hk4" path="res://brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="4_u7obh"]
+[ext_resource type="Texture2D" uid="uid://dicniwkl0n2co" path="res://icon.svg" id="5_cnbby"]
+[ext_resource type="Script" uid="uid://1hk5timw24ih" path="res://configuraciones.gd" id="6_ua7er"]
+[ext_resource type="Texture2D" uid="uid://dp26prjj8evy5" path="res://Untitled 11-29-2025 07-32-25.png" id="7_vqkud"]
+[ext_resource type="Texture2D" uid="uid://de0nfmvcjecld" path="res://imported/Untitled 12-03-2025 08-32-32.png" id="8_elhp4"]
+[ext_resource type="Texture2D" uid="uid://bn7vj2bbaoimp" path="res://imported/Untitled 12-03-2025 04-10-20 (2).png" id="8_mmgya"]
+[ext_resource type="AudioStream" uid="uid://dlpmswxpxi0cf" path="res://miscellaneous-thoughts-246558.mp3" id="9_g11t1"]
+[ext_resource type="FontFile" uid="uid://f71bj77sai0j" path="res://brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="10_rhabi"]
+[ext_resource type="Texture2D" uid="uid://blg30ge8d1jst" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/Untitled 11-08-2025 05-06-59.png" id="11_sr2bj"]
+
+[sub_resource type="GDScript" id="GDScript_mmgya"]
+resource_name = "Mjk"
+script/source = "extends Node2D
+
+var on = Music.dm.get(\"on\", false)
+var off = Music.dm.get(\"off\", false)
+
+func _ready() -> void:
+	if on:
+		$Configuraciones/Button2.visible = false
+	else:
+		Music.toggle_music(false)
+		$Configuraciones/Button.visible = false
+
+func _on_button_pressed() -> void:
+	Music.toggle_music(false)
+	$Configuraciones/Button.visible = false
+	$Configuraciones/Button2.visible = true
+	Music.dm[\"off\"] = true
+	Music.dm[\"on\"] = false
+
+func _on_button_2_pressed() -> void:
+	Music.toggle_music(true)
+	$Configuraciones/Button2.visible = false
+	$Configuraciones/Button.visible = true
+	Music.dm[\"off\"] = false
+	Music.dm[\"on\"] = true
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_elhp4"]
+viewport_path = NodePath("TextureRect/SubViewport")
+
+[sub_resource type="GDScript" id="GDScript_xvfkc"]
+resource_name = "Mortero"
+script/source = "extends Control
+
+var _EA1_v = GlobalData.estado_objetos.get(\"EA1\", false)
+var _EA2_v = GlobalData.estado_objetos.get(\"EA2\", false)
+var _EB1_v = GlobalData.estado_objetos.get(\"EB1\", false)
+var _EB2_v = GlobalData.estado_objetos.get(\"EB2\", false)
+var _EC1_v = GlobalData.estado_objetos.get(\"EC1\", false)
+var _EC2_v = GlobalData.estado_objetos.get(\"EC2\", false)
+var _ED1_v = GlobalData.estado_objetos.get(\"ED1\", false)
+var _ED2_v = GlobalData.estado_objetos.get(\"ED2\", false)
+var _EE1_v = GlobalData.estado_objetos.get(\"EE1\", false)
+var _EE2_v = GlobalData.estado_objetos.get(\"EE2\", false)
+var _EF1_v = GlobalData.estado_objetos.get(\"EF1\", false)
+var _EF2_v = GlobalData.estado_objetos.get(\"EF2\", false)
+var _EG1_v = GlobalData.estado_objetos.get(\"EG1\", false)
+var _EG2_v = GlobalData.estado_objetos.get(\"EG2\", false)
+var _EH1_v = GlobalData.estado_objetos.get(\"EH1\", false)
+var _EH2_v = GlobalData.estado_objetos.get(\"EH2\", false)
+@onready var ML = $\"../Label2\"
+
+func _ready() -> void:
+	$\"../Sprite2D\".frame = 0
+	$\"../AnimationPlayer\".play(\"Quieto\")
+	$\"../EA1\".visible = false
+	$\"../EA2\".visible = false
+	$\"../AnimationPlayer\".play(\"Quieto\")
+	$Mezclar.visible = false
+	$Reset.visible = false
+	ML.visible = false
+	if _EA1_v:
+		$\"../EA1\".visible = true
+		$\"../EA1/Sprite2D\".frame = 0
+	if _EB1_v:
+		$\"../EA1\".visible = true
+		$\"../EA1/Sprite2D\".frame = 1
+	if _EC1_v:
+		$\"../EA1\".visible = true
+		$\"../EA1/Sprite2D\".frame = 2
+	if _ED1_v:
+		$\"../EA1\".visible = true
+		$\"../EA1/Sprite2D\".frame = 3
+	if _EE1_v:
+		$\"../EA1\".visible = true
+		$\"../EA1/Sprite2D\".frame = 4
+	if _EF1_v:
+		$\"../EA1\".visible = true
+		$\"../EA1/Sprite2D\".frame = 5
+	if _EG1_v:
+		$\"../EA1\".visible = true
+		$\"../EA1/Sprite2D\".frame = 6
+	if _EH1_v:
+		$\"../EA1\".visible = true
+		$\"../EA1/Sprite2D\".frame = 7
+	if _EA2_v:
+		$\"../EA2\".visible = true
+		$\"../EA2/Sprite2D\".frame = 0
+	if _EB2_v:
+		$\"../EA2\".visible = true
+		$\"../EA2/Sprite2D\".frame = 1
+	if _EC2_v:
+		$\"../EA2\".visible = true
+		$\"../EA2/Sprite2D\".frame = 2
+	if _ED2_v:
+		$\"../EA2\".visible = true
+		$\"../EA2/Sprite2D\".frame = 3
+	if _EE2_v:
+		$\"../EA2\".visible = true
+		$\"../EA2/Sprite2D\".frame = 4
+	if _EF2_v:
+		$\"../EA2\".visible = true
+		$\"../EA2/Sprite2D\".frame = 5
+	if _EG2_v:
+		$\"../EA2\".visible = true
+		$\"../EA2/Sprite2D\".frame = 6
+	if _EH2_v:
+		$\"../EA2\".visible = true
+		$\"../EA2/Sprite2D\".frame = 7
+	if $\"../EA1/Sprite2D\".frame == 0 or $\"../EA1/Sprite2D\".frame == 2 or $\"../EA1/Sprite2D\".frame == 6:
+		$\"../EA1\".disabled = true
+	if $\"../EA2/Sprite2D\".frame == 0 or $\"../EA2/Sprite2D\".frame == 2 or $\"../EA2/Sprite2D\".frame == 6:
+		$\"../EA2\".disabled = true
+
+func _on_ea_1_pressed() -> void:
+	$\"../EA1\".visible = false
+	if $\"../EA1/Sprite2D\".frame == 1:
+		GlobalData.estado_objetos[\"EB1\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$\"../Sprite2D\".frame = 2
+			$Mezclar.visible = true
+		elif $\"../Sprite2D\".frame == 7:
+			$\"../Sprite2D\".frame = 5
+			$Mezclar.visible = true
+		elif $\"../Sprite2D\".frame == 8:
+			$\"../Sprite2D\".frame = 10
+			$Mezclar.visible = true
+		else:
+			$\"../Sprite2D\".frame = 1
+	if $\"../EA1/Sprite2D\".frame == 3:
+		GlobalData.estado_objetos[\"ED1\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$\"../Sprite2D\".frame = 2
+			$Mezclar.visible = true
+		elif $\"../Sprite2D\".frame == 7:
+			$\"../Sprite2D\".frame = 5
+			$Mezclar.visible = true
+		elif $\"../Sprite2D\".frame == 8:
+			$\"../Sprite2D\".frame = 10
+			$Mezclar.visible = true
+		else:
+			$\"../Sprite2D\".frame = 2
+	if $\"../EA1/Sprite2D\".frame == 4:
+		GlobalData.estado_objetos[\"EE1\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$\"../Sprite2D\".frame = 4
+			$Mezclar.visible = true
+		elif $\"../Sprite2D\".frame == 7:
+			$\"../Sprite2D\".frame = 6
+			$Mezclar.visible = true
+		else:
+			$\"../Sprite2D\".frame = 8
+	if $\"../EA1/Sprite2D\".frame == 5:
+		GlobalData.estado_objetos[\"EF1\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$\"../Sprite2D\".frame = 3
+			$Mezclar.visible = true
+		elif $\"../Sprite2D\".frame == 8:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 9
+		else:
+			$\"../Sprite2D\".frame = 7
+	if $\"../EA1/Sprite2D\".frame == 7:
+		GlobalData.estado_objetos[\"EH1\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 2
+		elif $\"../Sprite2D\".frame == 7:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 5
+		elif $\"../Sprite2D\".frame == 8:
+			$\"../Sprite2D\".frame = 10
+			$Mezclar.visible = true
+		else:
+			$\"../Sprite2D\".frame = 1
+
+func _on_ea_2_pressed() -> void:
+	$\"../EA2\".visible = false
+	if $\"../EA2/Sprite2D\".frame == 1:
+		GlobalData.estado_objetos[\"EB2\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 2
+		elif $\"../Sprite2D\".frame == 7:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 5
+		elif $\"../Sprite2D\".frame == 8:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 10
+		else:
+			$\"../Sprite2D\".frame = 1
+	if $\"../EA2/Sprite2D\".frame == 3:
+		GlobalData.estado_objetos[\"ED2\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 2
+		elif $\"../Sprite2D\".frame == 7:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 5
+		elif $\"../Sprite2D\".frame == 8:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 10
+		else:
+			$\"../Sprite2D\".frame = 1
+	if $\"../EA2/Sprite2D\".frame == 4:
+		GlobalData.estado_objetos[\"EE2\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 4
+		elif $\"../Sprite2D\".frame == 7:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 6
+		else:
+			$\"../Sprite2D\".frame = 8
+	if $\"../EA2/Sprite2D\".frame == 5:
+		GlobalData.estado_objetos[\"EF2\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 3
+		elif $\"../Sprite2D\".frame == 8:
+			$\"../Sprite2D\".frame = 9
+			$Mezclar.visible = true
+		else:
+			$\"../Sprite2D\".frame = 7
+	if $\"../EA2/Sprite2D\".frame == 7:
+		GlobalData.estado_objetos[\"EH2\"] = false
+		if $\"../Sprite2D\".frame == 1:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 2
+		elif $\"../Sprite2D\".frame == 7:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 5
+		elif $\"../Sprite2D\".frame == 8:
+			$Mezclar.visible = true
+			$\"../Sprite2D\".frame = 10
+		else:
+			$\"../Sprite2D\".frame = 1
+
+func _on_mezclar_pressed() -> void:
+	$Reset.visible = true
+	$Mezclar.visible = false
+	if $\"../Sprite2D\".frame == 2:
+		$\"../Sprite2D\".frame = 11
+	if $\"../Sprite2D\".frame == 3 or $\"../Sprite2D\".frame == 5:
+		$\"../Sprite2D\".frame = 13
+	if $\"../Sprite2D\".frame == 4 or $\"../Sprite2D\".frame == 10:
+		$\"../Sprite2D\".frame = 12
+	if $\"../Sprite2D\".frame == 6 or $\"../Sprite2D\".frame == 9:
+		$\"../Sprite2D\".frame = 14
+
+func _on_reset_pressed() -> void:
+	$Reset.visible = false
+	$\"../Sprite2D\".frame = 0
+"
+
+[sub_resource type="Animation" id="Animation_dg77c"]
+resource_name = "Agregar"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_ycdy4"]
+resource_name = "Explosion"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_w48qg"]
+resource_name = "Mezclar"
+length = 2.0
+
+[sub_resource type="Animation" id="Animation_vivmo"]
+resource_name = "Nueva receta"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(792, 558), Vector2(792, 435), Vector2(792, 435), Vector2(792, 558)]
+}
+
+[sub_resource type="Animation" id="Animation_4c57u"]
+resource_name = "Quieto"
+length = 1.09
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.76666665, 0.93333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_efxa6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(792, 558)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ycdy4"]
+_data = {
+&"Agregar": SubResource("Animation_dg77c"),
+&"Explosion": SubResource("Animation_ycdy4"),
+&"Mezclar": SubResource("Animation_w48qg"),
+&"Nueva receta": SubResource("Animation_vivmo"),
+&"Quieto": SubResource("Animation_4c57u"),
+&"RESET": SubResource("Animation_efxa6")
+}
+
+[sub_resource type="Animation" id="Animation_2cqfq"]
+resource_name = "Mezclar"
+length = 2.0
+
+[sub_resource type="Animation" id="Animation_yaehf"]
+resource_name = "Nueva Receta"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(792, 558), Vector2(792, 442.5), Vector2(792, 442.5), Vector2(792, 558)]
+}
+
+[sub_resource type="Animation" id="Animation_074og"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(792, 558)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cegan"]
+_data = {
+&"Mezclar": SubResource("Animation_2cqfq"),
+&"Nueva Receta": SubResource("Animation_yaehf"),
+&"RESET": SubResource("Animation_074og")
+}
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_mmgya")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_elhp4")
+
+[node name="SubViewport" parent="TextureRect" instance=ExtResource("1_mmgya")]
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(771, 378)
+scale = Vector2(17.5, 17.5)
+texture = ExtResource("2_elhp4")
+hframes = 10
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+offset_left = -82.0
+offset_top = 436.0
+offset_right = 1628.0
+offset_bottom = 771.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 179.0
+offset_top = 19.0
+offset_right = 179.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_xvfkc")
+
+[node name="Mezclar" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 474.00003
+offset_right = 951.0
+offset_bottom = 672.0
+scale = Vector2(0.65, 0.65)
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Mezclar"]
+position = Vector2(258, 99)
+texture = ExtResource("3_4pw50")
+hframes = 2
+
+[node name="Label" type="Label" parent="Control/Mezclar"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 52.0
+offset_top = 67.99996
+offset_right = 464.0
+offset_bottom = 128.99997
+theme_override_fonts/font = ExtResource("4_u7obh")
+theme_override_font_sizes/font_size = 60
+text = "Mezclar"
+
+[node name="Reset" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 437.0
+offset_top = -5.0
+offset_right = 954.0
+offset_bottom = 191.0
+scale = Vector2(0.65, 0.65)
+icon = ExtResource("5_cnbby")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Reset"]
+position = Vector2(258, 99)
+texture = ExtResource("3_4pw50")
+hframes = 2
+
+[node name="Label" type="Label" parent="Control/Reset"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 50.76925
+offset_top = 73.84616
+offset_right = 545.7692
+offset_bottom = 134.84616
+theme_override_fonts/font = ExtResource("4_u7obh")
+theme_override_font_sizes/font_size = 50
+text = "Reiniciar"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 735.0
+offset_top = 393.0
+offset_right = 745.0
+offset_bottom = 403.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8, 4)
+size_flags_horizontal = 0
+color = Color(1, 1, 1, 0)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 735.0
+offset_top = 412.5
+offset_right = 745.0625
+offset_bottom = 422.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8, 2)
+color = Color(1, 1, 1, 0)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 734.0
+offset_top = 392.5
+offset_right = 744.0625
+offset_bottom = 402.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8, 2)
+color = Color(1, 1, 1, 0)
+
+[node name="Configuraciones" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 163.0
+offset_top = 9.0
+offset_right = 203.0
+offset_bottom = 49.0
+script = ExtResource("6_ua7er")
+
+[node name="Button" type="Button" parent="Configuraciones"]
+layout_mode = 0
+offset_left = -124.0
+offset_top = 22.0
+offset_right = 12.0
+offset_bottom = 158.0
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Configuraciones/Button"]
+texture_filter = 1
+position = Vector2(69, 67)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_vqkud")
+hframes = 2
+
+[node name="Button2" type="Button" parent="Configuraciones"]
+layout_mode = 0
+offset_left = -123.0
+offset_top = 21.0
+offset_right = 13.0
+offset_bottom = 157.0
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Configuraciones/Button2"]
+texture_filter = 1
+position = Vector2(69, 68)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_vqkud")
+hframes = 2
+frame = 1
+
+[node name="Configuranción" type="Button" parent="Configuraciones"]
+layout_mode = 0
+offset_left = 1174.0
+offset_top = 458.0
+offset_right = 1310.0
+offset_bottom = 594.0
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Configuraciones/Configuranción"]
+texture_filter = 1
+position = Vector2(68, 69)
+scale = Vector2(4, 4)
+texture = ExtResource("8_elhp4")
+hframes = 3
+frame = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(778, 441.00003)
+scale = Vector2(5, 5)
+texture = ExtResource("8_mmgya")
+hframes = 15
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_g11t1")
+parameters/looping = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ycdy4")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cegan")
+}
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 792.0
+offset_top = 558.0
+offset_right = 1144.0
+offset_bottom = 581.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("10_rhabi")
+text = "Aprendiste una nueva receta"
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 1301.0
+offset_top = 56.0
+offset_right = 1405.0
+offset_bottom = 161.0
+color = Color(0.5264226, 0.5264226, 0.5264226, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = 1418.0
+offset_top = 56.0
+offset_right = 1522.0
+offset_bottom = 161.0
+color = Color(0.52610093, 0.52610093, 0.52610093, 1)
+
+[node name="EA1" type="Button" parent="."]
+clip_contents = true
+offset_left = 1325.0
+offset_top = 65.0
+offset_right = 1357.0
+offset_bottom = 111.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EA1"]
+texture_filter = 1
+position = Vector2(17, 17)
+texture = ExtResource("11_sr2bj")
+hframes = 8
+vframes = 2
+
+[node name="EA2" type="Button" parent="."]
+clip_contents = true
+offset_left = 1442.0
+offset_top = 65.0
+offset_right = 1474.0
+offset_bottom = 111.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EA2"]
+texture_filter = 1
+position = Vector2(17, 17)
+texture = ExtResource("11_sr2bj")
+hframes = 8
+vframes = 2
+
+[node name="Label2" type="Label" parent="."]
+texture_filter = 1
+offset_left = 49.0
+offset_top = 179.0
+offset_right = 490.0
+offset_bottom = 210.0
+theme_override_fonts/font = ExtResource("10_rhabi")
+theme_override_font_sizes/font_size = 25
+
+[connection signal="pressed" from="Control/Mezclar" to="Control" method="_on_mezclar_pressed"]
+[connection signal="pressed" from="Control/Reset" to="Control" method="_on_reset_pressed"]
+[connection signal="pressed" from="Configuraciones/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Configuraciones/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Configuraciones/Configuranción" to="Configuraciones" method="_on_configuranción_pressed"]
+[connection signal="pressed" from="EA1" to="Control" method="_on_ea_1_pressed"]
+[connection signal="pressed" from="EA2" to="Control" method="_on_ea_2_pressed"]

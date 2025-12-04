@@ -1,0 +1,773 @@
+[gd_scene load_steps=10 format=3 uid="uid://xytoxk3f6pqj"]
+
+[ext_resource type="PackedScene" uid="uid://d3jxrp4ti5bnl" path="res://Arm.tscn" id="1_b0kld"]
+[ext_resource type="Texture2D" uid="uid://blg30ge8d1jst" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/Untitled 11-08-2025 05-06-59.png" id="1_wgwtc"]
+[ext_resource type="Script" uid="uid://dltre1mb1s38j" path="res://Prueba.tres.gd" id="2_b0kld"]
+[ext_resource type="Texture2D" uid="uid://drgw1yfld87if" path="res://Untitled 09-11-2025 09-29-12.png" id="5_1d36f"]
+[ext_resource type="FontFile" uid="uid://f71bj77sai0j" path="res://brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="6_d4gy5"]
+[ext_resource type="Texture2D" uid="uid://de0nfmvcjecld" path="res://imported/Untitled 12-03-2025 08-32-32.png" id="7_ep22w"]
+[ext_resource type="Texture2D" uid="uid://dicniwkl0n2co" path="res://icon.svg" id="7_swha6"]
+
+[sub_resource type="GDScript" id="GDScript_b0kld"]
+script/source = "extends Node2D
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://root/node_3d.tscn\")
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ep22w"]
+viewport_path = NodePath("TextureRect/SubViewport")
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_b0kld")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_ep22w")
+
+[node name="SubViewport" parent="TextureRect" instance=ExtResource("1_b0kld")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 226.0
+offset_top = 53.0
+offset_right = 266.0
+offset_bottom = 93.0
+script = ExtResource("2_b0kld")
+
+[node name="Boton_A" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 244.0
+offset_top = 470.0
+offset_right = 276.0
+offset_bottom = 516.0
+scale = Vector2(3, 3)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_A"]
+texture_filter = 1
+position = Vector2(17, 17)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+
+[node name="Boton_B" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 402.0
+offset_top = 463.00003
+offset_right = 442.0
+offset_bottom = 511.00003
+scale = Vector2(3, 3)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_B"]
+texture_filter = 1
+position = Vector2(20.99999, 18.99999)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 1
+
+[node name="Boton_C" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 607.0
+offset_top = 450.0
+offset_right = 637.0
+offset_bottom = 502.0
+scale = Vector2(3, 3)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_C"]
+texture_filter = 1
+position = Vector2(15, 23)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 2
+
+[node name="Boton_D" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 791.0
+offset_top = 463.00003
+offset_right = 831.0
+offset_bottom = 511.00003
+scale = Vector2(3, 3)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_D"]
+texture_filter = 1
+position = Vector2(21, 19)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 3
+
+[node name="Boton_E" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 275.0
+offset_top = 139.0
+offset_right = 315.0
+offset_bottom = 189.0
+scale = Vector2(2.75, 2.75)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_E"]
+texture_filter = 1
+position = Vector2(20.666666, 21)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 4
+
+[node name="Boton_F" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 444.0
+offset_top = 133.0
+offset_right = 490.0
+offset_bottom = 185.0
+scale = Vector2(2.75, 2.75)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_F"]
+texture_filter = 1
+position = Vector2(22.666666, 23)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 5
+
+[node name="Boton_G" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 632.0
+offset_top = 122.0
+offset_right = 656.0
+offset_bottom = 180.0
+scale = Vector2(2.75, 2.75)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_G"]
+texture_filter = 1
+position = Vector2(10.999999, 28.666668)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 6
+
+[node name="Boton_H" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 785.0
+offset_top = 155.0
+offset_right = 831.0
+offset_bottom = 199.0
+scale = Vector2(2.75, 2.75)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Boton_H"]
+texture_filter = 1
+position = Vector2(23, 14.999999)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+frame = 7
+
+[node name="Panel_A" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = -205.0
+offset_top = 16.0
+offset_right = -165.0
+offset_bottom = 56.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_A"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_A"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.325
+anchor_top = 0.275
+anchor_right = 1.925
+anchor_bottom = 0.275
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Acido Acetico"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_A"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.6
+anchor_top = -0.425
+anchor_right = 9.75
+anchor_bottom = 2.4
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Líquido transparente 
+e incoloro con un olor 
+fuerte similar al del 
+vinagre. 
+Es peligroso"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_A" type="Button" parent="Control/Panel_A"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_B" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = -205.0
+offset_top = 16.0
+offset_right = -165.0
+offset_bottom = 56.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_B"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_B"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.35
+anchor_top = 0.275
+anchor_right = 2.05
+anchor_bottom = 0.575
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Bicarbonato de 
+Sodio"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_B"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = -0.2
+anchor_right = 0.05
+anchor_bottom = 1.7
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "polvo blanco cristalino
+ que se utiliza
+ comunmente en 
+repostería, en 
+productos de limpieza
+ y cosmética."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_B" type="Button" parent="Control/Panel_B"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_C" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = -205.0
+offset_top = 16.0
+offset_right = -165.0
+offset_bottom = 56.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_C"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_C"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.275
+anchor_top = 0.15
+anchor_right = 1.125
+anchor_bottom = 0.45
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Peroxido de 
+Hidrogeno"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_C"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.0
+anchor_top = -0.35
+anchor_right = 2.125
+anchor_bottom = 4.675
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Se le suele conocer 
+como agua oxigenada, 
+es incoloro y se utiliza 
+como desinfectante, 
+blanqueador y para 
+fabricar papel."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_C" type="Button" parent="Control/Panel_C"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_D" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = -205.0
+offset_top = 16.0
+offset_right = -165.0
+offset_bottom = 56.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_D"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_D"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.85
+anchor_top = 0.15
+anchor_right = 0.95
+anchor_bottom = 0.45
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Yoduro de 
+Potasio"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_D"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Sal cristalina utilizada
+en fotografia y 
+tratamientos por 
+radiación."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_D" type="Button" parent="Control/Panel_D"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_E" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = -205.0
+offset_top = 16.0
+offset_right = -165.0
+offset_bottom = 56.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_E"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_E"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.275
+anchor_top = 0.225
+anchor_right = 0.375
+anchor_bottom = 0.225
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Azufre"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_E"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.075
+anchor_top = -0.6
+anchor_right = 0.975
+anchor_bottom = 3.675
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Elemento químico 
+esencial para
+ la vida  y muy
+ abundante en zonas
+ volcanicas. Se usa para
+ la producción de ácido 
+sulfúrico, quimicos y 
+explosivos, papel, 
+caucho,cuero e 
+agricultura"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_E" type="Button" parent="Control/Panel_E"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_F" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = -205.0
+offset_top = 16.0
+offset_right = -165.0
+offset_bottom = 56.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_F"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_F"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.8
+anchor_top = 0.225
+anchor_right = 1.15
+anchor_bottom = 0.525
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Sulfato de 
+Cobre"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_F"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Polvo azul que se utiliza 
+para proteger cosas
+de hongos, bacterias e
+insectos."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_F" type="Button" parent="Control/Panel_F"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_G" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = -205.0
+offset_top = 16.0
+offset_right = -165.0
+offset_bottom = 56.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_G"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_G"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.275
+anchor_top = 0.225
+anchor_right = 1.875
+anchor_bottom = 0.225
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Alcohol Etilico"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_G"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = -0.325
+anchor_right = 0.125
+anchor_bottom = 2.05
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "El etanol, tambien 
+conocido como alcohol 
+etilico, es un liquido 
+transparente de olor 
+raro y el principal 
+ingrediente de las 
+bebidas alcoholicas"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_G" type="Button" parent="Control/Panel_G"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel_H" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = -205.0
+offset_top = 16.0
+offset_right = -165.0
+offset_bottom = 56.0
+
+[node name="Sprite1" type="Sprite2D" parent="Control/Panel_H"]
+texture_filter = 1
+position = Vector2(254.25, 310)
+scale = Vector2(8, 8)
+texture = ExtResource("5_1d36f")
+
+[node name="Label" type="Label" parent="Control/Panel_H"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.175
+anchor_top = 0.225
+anchor_right = 1.625
+anchor_bottom = 0.525
+offset_left = 221.0
+offset_top = 71.0
+offset_right = 277.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Carbonato de 
+Sodio"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/Panel_H"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -6.725
+anchor_top = 0.05
+anchor_right = 6.925
+anchor_bottom = 0.05
+offset_left = 100.0
+offset_top = 146.0
+offset_right = 406.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("6_d4gy5")
+text = "Sal blanca que se utiliza 
+para fabricar vidrio,
+ jabon, detergentes y 
+en la limpieza domestica "
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agregar_H" type="Button" parent="Control/Panel_H"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 508.0
+offset_right = 265.0
+offset_bottom = 644.0
+scale = Vector2(1.75826, 0.230882)
+icon = ExtResource("7_swha6")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 1110.0
+offset_top = 28.0
+offset_right = 1214.0
+offset_bottom = 133.0
+color = Color(0.5264226, 0.5264226, 0.5264226, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 1227.0
+offset_top = 28.0
+offset_right = 1331.0
+offset_bottom = 133.0
+color = Color(0.52610093, 0.52610093, 0.52610093, 1)
+
+[node name="EA1" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1104.0
+offset_top = 20.0
+offset_right = 1164.0
+offset_bottom = 80.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EA1"]
+texture_filter = 1
+position = Vector2(28, 27)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+
+[node name="EA2" type="Button" parent="Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1222.0
+offset_top = 17.0
+offset_right = 1282.0
+offset_bottom = 77.0
+scale = Vector2(2, 2)
+focus_behavior_recursive = 1
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EA2"]
+texture_filter = 1
+position = Vector2(29.5, 29.5)
+texture = ExtResource("1_wgwtc")
+hframes = 8
+vframes = 2
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1377.0
+offset_top = 525.0
+offset_right = 1513.0
+offset_bottom = 661.0
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Button"]
+texture_filter = 1
+position = Vector2(67, 68)
+scale = Vector2(4, 4)
+texture = ExtResource("7_ep22w")
+hframes = 3
+frame = 2
+
+[connection signal="pressed" from="Control/Boton_A" to="Control" method="_on_boton_a_pressed"]
+[connection signal="pressed" from="Control/Boton_B" to="Control" method="_on_boton_b_pressed"]
+[connection signal="pressed" from="Control/Boton_C" to="Control" method="_on_boton_c_pressed"]
+[connection signal="pressed" from="Control/Boton_D" to="Control" method="_on_boton_d_pressed"]
+[connection signal="pressed" from="Control/Boton_E" to="Control" method="_on_boton_e_pressed"]
+[connection signal="pressed" from="Control/Boton_F" to="Control" method="_on_boton_f_pressed"]
+[connection signal="pressed" from="Control/Boton_G" to="Control" method="_on_boton_g_pressed"]
+[connection signal="pressed" from="Control/Boton_H" to="Control" method="_on_boton_h_pressed"]
+[connection signal="pressed" from="Control/Panel_A/Agregar_A" to="Control" method="_on_agregar_a_pressed"]
+[connection signal="pressed" from="Control/Panel_B/Agregar_B" to="Control" method="_on_agregar_b_pressed"]
+[connection signal="pressed" from="Control/Panel_C/Agregar_C" to="Control" method="_on_agregar_c_pressed"]
+[connection signal="pressed" from="Control/Panel_D/Agregar_D" to="Control" method="_on_agregar_d_pressed"]
+[connection signal="pressed" from="Control/Panel_E/Agregar_E" to="Control" method="_on_agregar_e_pressed"]
+[connection signal="pressed" from="Control/Panel_F/Agregar_F" to="Control" method="_on_agregar_f_pressed"]
+[connection signal="pressed" from="Control/Panel_G/Agregar_G" to="Control" method="_on_agregar_g_pressed"]
+[connection signal="pressed" from="Control/Panel_H/Agregar_H" to="Control" method="_on_agregar_h_pressed"]
+[connection signal="pressed" from="Control/EA1" to="Control" method="_on_ea_1_pressed"]
+[connection signal="pressed" from="Control/EA2" to="Control" method="_on_ea_2_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="Control" method="_on_button_pressed"]

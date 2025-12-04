@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3jxrp4ti5bnl"]
+
+[ext_resource type="PackedScene" uid="uid://bfsie7ia78c10" path="res://ArmObj.tscn" id="1_3cj16"]
+
+[node name="SubViewport" type="SubViewport"]
+size = Vector2i(1600, 720)
+
+[node name="Node3D" parent="." instance=ExtResource("1_3cj16")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03390473, 0.83545864, 1.5545696)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9707241, 2.8866)
+light_energy = 1.666
+light_indirect_energy = 2.111
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.861
+shadow_transmittance_bias = 0.494
+shadow_opacity = 0.47
+shadow_blur = 0.0
+omni_range = 8.909
+omni_attenuation = 1.278

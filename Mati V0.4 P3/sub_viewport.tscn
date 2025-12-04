@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://clxn22tygjcrs"]
+
+[ext_resource type="PackedScene" uid="uid://gsj8h5yjwnpe" path="res://R.tscn" id="1_vp4ha"]
+
+[node name="SubViewport" type="SubViewport"]
+size = Vector2i(1600, 720)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8652483, 3.8503199)
+
+[node name="Node3D" parent="." instance=ExtResource("1_vp4ha")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.085363016, -0.7763765, 0.62446195, 0.1051516, 0.6302694, 0.76922274, -0.9907857, 0, 0.13543892, 4.6658535, 4.942383, 0)
